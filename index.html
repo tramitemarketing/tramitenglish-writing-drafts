@@ -3,78 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TramitEnglish — 4 palettes</title>
+<title>TramitEnglish — 4 distinct styles</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Chivo+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,500&family=Chivo+Mono:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&family=clash-display@600,700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
 body{background:#0c0a09;color:#fff;font-family:'General Sans',sans-serif;overflow:hidden}
 #stage{position:relative;height:100vh;width:100vw}
-.draft{position:absolute;inset:0;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .4s ease;background:var(--bg);color:var(--ink)}
+.draft{position:absolute;inset:0;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .4s ease}
 .draft.active{opacity:1;pointer-events:auto}
 .draft::-webkit-scrollbar{width:0}
 svg{display:block}
 .draft.active .rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
 .draft.active .rise:nth-child(2){animation-delay:.05s}.draft.active .rise:nth-child(3){animation-delay:.1s}.draft.active .rise:nth-child(4){animation-delay:.15s}.draft.active .rise:nth-child(5){animation-delay:.2s}
-@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-
-/* ---- palettes ---- */
-.p1{--bg:#16352a;--surface:#1e4234;--ink:#f3f0e6;--soft:#9bb3a4;--pop:#e9c45c;--popink:#16352a;--line:#2c5142}
-.p2{--bg:#eef0ea;--surface:#ffffff;--ink:#16150f;--soft:#8a887d;--pop:#dd3b1e;--popink:#ffffff;--line:#deded4}
-.p3{--bg:#f1e8de;--surface:#faf4ec;--ink:#3a1e32;--soft:#9a7d8f;--pop:#e08a72;--popink:#3a1e32;--line:#e3d5c9}
-.p4{--bg:#f2f1ea;--surface:#fbfbf4;--ink:#24231d;--soft:#8b897d;--pop:#9fb016;--popink:#ffffff;--line:#e2e1d4}
-
-/* ---- shared dashboard ---- */
-.wrap{max-width:840px;margin:0 auto;min-height:100vh;padding:30px 36px 130px}
-.topbar{display:flex;justify-content:space-between;align-items:center}
-.brand{font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:-.01em;color:var(--ink)}
-.brand b{color:var(--pop)}
-.menu{display:flex;gap:22px;font-size:13px;color:var(--soft)}
-.menu a{text-decoration:none;color:inherit;padding-bottom:3px}
-.menu a.on{color:var(--ink);border-bottom:2px solid var(--pop)}
-
-.swatches{display:flex;align-items:center;gap:10px;margin-top:22px}
-.swatches .lab{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
-.swatches .sw{display:flex;align-items:center;gap:7px;font-family:'Chivo Mono',monospace;font-size:10px;color:var(--soft)}
-.swatches .chip{width:15px;height:15px;border-radius:3px;border:1px solid rgba(0,0,0,.12)}
-
-.hero{margin-top:30px;display:grid;grid-template-columns:1.5fr 1fr;gap:34px;align-items:end}
-.greet .k{font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pop)}
-.greet h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(34px,6.5vw,58px);line-height:.98;letter-spacing:-.02em;margin-top:12px;color:var(--ink)}
-.day{text-align:right}
-.day .n{font-family:'Fraunces',serif;font-weight:500;font-size:60px;line-height:.9;color:var(--ink)}
-.day .n small{font-size:22px;color:var(--soft)}
-.day .meta{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-top:6px}
-.bar{height:4px;border-radius:10px;background:var(--line);margin-top:30px;position:relative;overflow:hidden}
-.bar i{position:absolute;left:0;top:0;bottom:0;width:23.3%;background:var(--pop);border-radius:10px}
-
-.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:42px}
-.stat{padding-right:24px}
-.stat+.stat{border-left:1px solid var(--line);padding-left:24px}
-.stat .v{font-family:'Fraunces',serif;font-weight:500;font-size:46px;line-height:.95;color:var(--ink)}
-.stat .v small{font-size:17px;color:var(--soft)}
-.stat .n{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-top:10px}
-
-.lower{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:46px}
-.focus h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--pop);margin-bottom:14px}
-.weak{display:flex;justify-content:space-between;align-items:center;font-size:15px;color:var(--ink);padding:11px 0;border-bottom:1px solid var(--line)}
-.weak b{font-family:'Chivo Mono',monospace;font-size:13px;font-weight:500;color:var(--pop)}
-.act{display:flex;flex-direction:column;justify-content:flex-end}
-.btn{display:flex;justify-content:space-between;align-items:center;background:var(--pop);color:var(--popink);
-  font-weight:600;font-size:18px;padding:17px 22px;border-radius:12px;text-decoration:none}
-.tiles{display:flex;gap:8px;margin-top:10px}
-.tile{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center;
-  font-size:12px;color:var(--ink);text-decoration:none;font-weight:500}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 /* switcher */
 .switcher{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:14px;
   background:#171310;border:1px solid #2c251e;border-radius:100px;padding:8px 10px 8px 16px;box-shadow:0 12px 44px rgba(0,0,0,.55);font-family:'Chivo Mono',monospace}
-.sw-name{font-size:11px;letter-spacing:.07em;color:#c8b79b;text-transform:uppercase;min-width:200px;white-space:nowrap}
+.sw-name{font-size:11px;letter-spacing:.07em;color:#c8b79b;text-transform:uppercase;min-width:210px;white-space:nowrap}
 .sw-name b{color:#fff;font-weight:700}
 .sw-btn{width:30px;height:30px;border-radius:50%;border:1px solid #3a3127;background:#0f0c0a;color:#e8d9c0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
 .sw-btn:hover{background:#241d16;border-color:#5b4e3c}
@@ -83,13 +35,144 @@ svg{display:block}
 .sw-dot.on{background:#d9a441;transform:scale(1.25)}
 .sw-hint{position:fixed;left:50%;bottom:62px;transform:translateX(-50%);z-index:100;font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.12em;color:#574b3a;text-transform:uppercase}
 
+/* ============================================================ 01 · PRESS (bold editorial · Vermilion) */
+.press{background:#eef0ea;color:#16150f}
+.press .wrap{max-width:900px;margin:0 auto;padding:26px 40px 130px}
+.press .top{display:flex;justify-content:space-between;align-items:center}
+.press .brand{font-family:'Fraunces',serif;font-weight:900;font-size:21px;letter-spacing:-.01em}
+.press .brand i{color:#dd3b1e;font-style:normal}
+.press .menu{display:flex;gap:20px;font-size:13px;font-weight:500;color:#8a887d}
+.press .menu a{text-decoration:none;color:inherit}.press .menu a.on{color:#16150f}
+.press .rule{height:3px;background:#16150f;margin:14px 0 0;position:relative}
+.press .rule::after{content:"";position:absolute;left:0;top:0;height:3px;width:120px;background:#dd3b1e}
+.press .kick{font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#dd3b1e;margin-top:18px}
+.press .hero{display:grid;grid-template-columns:1.55fr .9fr;gap:24px;align-items:start;margin-top:8px}
+.press h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(42px,8.5vw,84px);line-height:.9;letter-spacing:-.025em}
+.press h1 em{font-style:italic;font-weight:500}
+.press .daybox{text-align:right;padding-top:8px}
+.press .daybox .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(80px,16vw,150px);line-height:.8;letter-spacing:-.03em;
+  -webkit-text-stroke:2px #16150f;color:transparent}
+.press .daybox .lab{font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a887d;margin-top:6px}
+.press .band{display:flex;align-items:stretch;border-top:2px solid #16150f;border-bottom:2px solid #16150f;margin-top:30px}
+.press .st{flex:1;padding:16px 0}
+.press .st+.st{border-left:2px solid #16150f;padding-left:22px}
+.press .st .v{font-family:'Fraunces',serif;font-weight:900;font-size:44px;line-height:.9}
+.press .st .v small{font-size:16px;color:#b22c14}
+.press .st .n{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a887d;margin-top:8px}
+.press .lower{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:30px}
+.press .focus h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#dd3b1e;margin-bottom:12px}
+.press .weak{display:flex;justify-content:space-between;font-family:'Fraunces',serif;font-size:19px;padding:9px 0;border-bottom:1px solid #d8d8cd}
+.press .weak b{font-family:'Chivo Mono',monospace;font-size:13px;color:#dd3b1e}
+.press .act{display:flex;flex-direction:column;justify-content:flex-end;gap:10px}
+.press .btn{display:flex;justify-content:space-between;align-items:center;background:#dd3b1e;color:#fff;font-family:'Fraunces',serif;font-weight:600;font-size:20px;padding:16px 22px;text-decoration:none}
+.press .tiles{display:flex;gap:0}
+.press .tile{flex:1;border:1px solid #16150f;border-right:none;padding:12px;text-align:center;font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#16150f;text-decoration:none}
+.press .tile:last-child{border-right:1px solid #16150f}
+
+/* ============================================================ 02 · QUIET (minimal premium · Citron) */
+.quiet{background:#f2f1ea;color:#24231d}
+.quiet .wrap{max-width:720px;margin:0 auto;padding:46px 46px 140px}
+.quiet .top{display:flex;justify-content:space-between;align-items:center}
+.quiet .brand{font-size:15px;font-weight:600;letter-spacing:.01em}
+.quiet .menu{display:flex;gap:26px;font-size:13px;color:#a5a397}
+.quiet .menu a{text-decoration:none;color:inherit}.quiet .menu a.on{color:#24231d}
+.quiet .hero{margin-top:96px;max-width:17ch}
+.quiet .k{font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#a5a397}
+.quiet .k b{color:#7d8a12;font-weight:500}
+.quiet h1{font-size:clamp(30px,5.4vw,46px);font-weight:500;line-height:1.12;letter-spacing:-.02em;margin-top:22px}
+.quiet .daywrap{display:flex;align-items:baseline;gap:18px;margin-top:80px}
+.quiet .daywrap .n{font-size:20px;font-weight:600;letter-spacing:.04em}
+.quiet .daywrap .n b{color:#7d8a12}
+.quiet .pline{flex:1;height:1px;background:#deded3;position:relative}
+.quiet .pline i{position:absolute;left:0;top:0;height:1px;width:23.3%;background:#24231d}
+.quiet .pline i::after{content:"";position:absolute;right:-3px;top:-2.5px;width:6px;height:6px;border-radius:50%;background:#9fb016}
+.quiet .stats{display:flex;justify-content:space-between;margin-top:70px}
+.quiet .stat .v{font-size:40px;font-weight:500;letter-spacing:-.02em}
+.quiet .stat .v small{font-size:15px;color:#b6b4a8}
+.quiet .stat .lab{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a5a397;margin-top:10px}
+.quiet .hr{height:1px;background:#deded3;margin:64px 0 0}
+.quiet .lower{margin-top:34px}
+.quiet .lh{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#a5a397;margin-bottom:6px}
+.quiet .weak{display:flex;justify-content:space-between;align-items:center;font-size:16px;padding:14px 0;border-bottom:1px solid #e7e6db}
+.quiet .weak b{font-family:'Chivo Mono',monospace;font-size:13px;font-weight:500;color:#7d8a12}
+.quiet .weak .dot{width:6px;height:6px;border-radius:50%;background:#9fb016;display:inline-block;margin-right:10px}
+.quiet .btn{display:inline-flex;align-items:center;gap:12px;margin-top:40px;font-size:18px;font-weight:500;color:#24231d;text-decoration:none;border-bottom:1.5px solid #9fb016;padding-bottom:6px}
+.quiet .btn span{color:#7d8a12}
+
+/* ============================================================ 03 · CONSOLE (instrument dark · Evergreen) */
+.console{background:#102219;color:#f3f0e6;font-family:'Spline Sans Mono',monospace}
+.console .wrap{max-width:780px;margin:0 auto;padding:26px 28px 130px}
+.console .frame{border:1px solid #2c5142;border-radius:6px;background:#16352a;box-shadow:0 0 0 6px rgba(22,53,42,.5),0 24px 60px rgba(0,0,0,.4)}
+.console .bar{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;border-bottom:1px solid #2c5142;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7fa08d}
+.console .bar .led{display:flex;align-items:center;gap:8px;color:#f3f0e6}
+.console .bar .led b{width:8px;height:8px;border-radius:50%;background:#e9c45c;box-shadow:0 0 10px #e9c45c}
+.console .pad{padding:24px 22px}
+.console .head{display:flex;justify-content:space-between;align-items:flex-end}
+.console .head .t{font-family:'General Sans',sans-serif;font-weight:600;font-size:clamp(26px,4.8vw,40px);line-height:.95;letter-spacing:-.01em}
+.console .head .ro{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7fa08d;text-align:right;line-height:1.8}
+.console .head .ro b{color:#e9c45c}
+.console .meters{margin-top:24px;border-top:1px solid #234135}
+.console .m{display:grid;grid-template-columns:9ch 1fr 4.5ch;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid #234135}
+.console .m .lab{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7fa08d}
+.console .scale{height:24px;position:relative;border-left:1px solid #3a5a4a;border-right:1px solid #3a5a4a}
+.console .scale .ticks{position:absolute;inset:0;display:flex;justify-content:space-between}
+.console .scale .ticks i{width:1px;background:#284a3b}
+.console .scale .fill{position:absolute;left:0;top:7px;bottom:7px;background:#3a6b52}
+.console .scale .fill.sig{background:#e9c45c;box-shadow:0 0 14px rgba(233,196,92,.4)}
+.console .scale .ndl{position:absolute;top:-3px;bottom:-3px;width:2px;background:#e9c45c}
+.console .m .val{font-family:'General Sans';font-weight:600;font-size:18px;text-align:right;color:#f3f0e6}
+.console .strip{margin-top:20px;display:flex;align-items:center;gap:14px;border:1px solid #2c5142;border-radius:4px;padding:12px 14px}
+.console .strip .k{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7fa08d;text-align:center;line-height:1.4}
+.console .seg{flex:1;display:flex;gap:2px}
+.console .seg i{flex:1;height:14px;background:#234135;border-radius:1px}.console .seg i.on{background:#3a6b52}.console .seg i.cur{background:#e9c45c;box-shadow:0 0 8px rgba(233,196,92,.5)}
+.console .foot{margin-top:20px;display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.console .run{background:#e9c45c;color:#16352a;border-radius:5px;padding:16px 18px;text-decoration:none;display:flex;justify-content:space-between;align-items:center;font-family:'General Sans';font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.01em}
+.console .pads{display:flex;gap:2px}
+.console .pd{flex:1;border:1px solid #2c5142;border-radius:4px;text-align:center;padding:14px 2px;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#bcd2c5;text-decoration:none}
+
+/* ============================================================ 04 · SALON (warm tactile · Mulberry) */
+.salon{background:#f1e8de;color:#3a1e32;background-image:radial-gradient(circle at 86% 4%,rgba(224,138,114,.16),transparent 42%)}
+.salon .wrap{max-width:880px;margin:0 auto;padding:28px 30px 130px}
+.salon .top{display:flex;justify-content:space-between;align-items:center}
+.salon .brand{font-family:'Fraunces',serif;font-weight:600;font-size:21px;letter-spacing:-.01em}
+.salon .menu{display:flex;gap:6px}
+.salon .menu a{text-decoration:none;font-size:12px;color:#8c6f82;padding:7px 13px;border-radius:100px}
+.salon .menu a.on{background:#3a1e32;color:#f1e8de}
+.salon .hero{margin-top:26px;display:grid;grid-template-columns:1.3fr .9fr;gap:18px;align-items:stretch}
+.salon .card{background:#faf4ec;border-radius:28px;padding:30px}
+.salon .greet{display:flex;flex-direction:column;justify-content:space-between}
+.salon .greet .k{font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#c06b54}
+.salon .greet h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(32px,6vw,52px);line-height:1;letter-spacing:-.02em;margin-top:14px}
+.salon .greet .btn{align-self:flex-start;margin-top:28px;background:#e08a72;color:#3a1e32;border-radius:100px;padding:14px 26px;text-decoration:none;font-weight:600;font-size:16px}
+.salon .ring{background:#3a1e32;color:#f1e8de;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.salon .ring .rw{position:relative;width:148px;height:148px}
+.salon .ring .rw .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.salon .ring .rw .ctr b{font-family:'Fraunces',serif;font-size:46px;line-height:1}
+.salon .ring .rw .ctr span{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#c79bb4;margin-top:2px}
+.salon .ring .cap{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#e08a72;margin-top:16px}
+.salon .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.salon .stcard{background:#faf4ec;border-radius:22px;padding:20px 22px}
+.salon .stcard .v{font-family:'Fraunces',serif;font-size:40px;line-height:1}
+.salon .stcard .v small{font-size:15px;color:#b596aa}
+.salon .stcard .n{font-size:12px;color:#8c6f82;margin-top:6px}
+.salon .lower{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin-top:14px}
+.salon .focus{background:#faf4ec;border-radius:22px;padding:24px}
+.salon .focus h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#c06b54;margin-bottom:14px}
+.salon .weak{display:flex;justify-content:space-between;align-items:center;font-size:15px;padding:10px 0;border-bottom:1px solid #ece0d4}
+.salon .weak:last-child{border-bottom:none}
+.salon .weak b{font-family:'Chivo Mono',monospace;font-size:13px;color:#c06b54}
+.salon .weak .chip{font-size:11px;color:#3a1e32;background:#f0d9cf;border-radius:100px;padding:3px 11px;text-decoration:none;margin-right:8px}
+.salon .tiles{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.salon .tile{background:#faf4ec;border-radius:18px;padding:16px 20px;text-decoration:none;color:#3a1e32;display:flex;align-items:center;justify-content:space-between;font-weight:500;font-size:15px}
+.salon .tile .ar{color:#e08a72}
+
 @media(max-width:640px){
-  .wrap{padding:26px 24px 130px}
-  .hero{grid-template-columns:1fr;gap:18px;align-items:start}.day{text-align:left}
-  .stats{grid-template-columns:1fr}.stat+.stat{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:0}
-  .stat{padding:14px 0}
-  .lower{grid-template-columns:1fr;gap:30px}
-  .menu{display:none}
+  .press .hero,.press .lower,.salon .hero,.salon .lower{grid-template-columns:1fr}
+  .press .band{flex-wrap:wrap}.press .st{flex:1 1 40%}
+  .salon .stats{grid-template-columns:1fr}
+  .console .m{grid-template-columns:7ch 1fr 4ch}.console .foot{grid-template-columns:1fr}
+  .quiet .stats{flex-direction:column;gap:24px}
+  .menu{display:none!important}
   .sw-name{min-width:120px;font-size:10px}
 }
 </style>
@@ -97,145 +180,144 @@ svg{display:block}
 <body>
 <div id="stage">
 
-  <!-- ===== P1 EVERGREEN ===== -->
-  <section class="draft p1 active" data-name="Evergreen · pine + butter">
+  <!-- ===== 01 PRESS ===== -->
+  <section class="draft press active" data-name="Press · Bold editorial">
     <div class="wrap">
-      <div class="topbar rise">
-        <div class="brand">Tramit<b>·</b>English</div>
+      <div class="top rise">
+        <div class="brand">Tramit<i>·</i>English</div>
         <nav class="menu"><a class="on">Home</a><a>Session</a><a>Tests</a><a>Library</a><a>Writing</a><a>Stats</a></nav>
       </div>
-      <div class="swatches rise">
-        <span class="lab">Evergreen</span>
-        <span class="sw"><span class="chip" style="background:#16352a"></span>#16352A</span>
-        <span class="sw"><span class="chip" style="background:#f3f0e6"></span>#F3F0E6</span>
-        <span class="sw"><span class="chip" style="background:#e9c45c"></span>#E9C45C</span>
-      </div>
+      <div class="rule rise"></div>
+      <div class="kick rise">Good evening · Friday 14 June · the daily edition</div>
       <div class="hero rise">
-        <div class="greet"><div class="k">Good evening · 14 June</div><h1>Today, the present perfect starts to settle.</h1></div>
-        <div class="day"><div class="n">14<small>/60</small></div><div class="meta">Day of journey · 46 to go</div></div>
+        <h1>Today you <em>write</em>, and the present perfect finally settles.</h1>
+        <div class="daybox"><div class="big">14</div><div class="lab">Day / 60 · 46 to go</div></div>
       </div>
-      <div class="bar rise"><i></i></div>
-      <div class="stats rise">
-        <div class="stat"><div class="v">14</div><div class="n">Day streak</div></div>
-        <div class="stat"><div class="v">B2</div><div class="n">Estimated level</div></div>
-        <div class="stat"><div class="v">78<small>%</small></div><div class="n">Accuracy · 30d</div></div>
+      <div class="band rise">
+        <div class="st"><div class="v">14</div><div class="n">Day streak</div></div>
+        <div class="st"><div class="v">B2</div><div class="n">Est. level</div></div>
+        <div class="st"><div class="v">78<small>%</small></div><div class="n">Accuracy · 30d</div></div>
       </div>
       <div class="lower rise">
-        <div class="focus"><h3>Areas to strengthen</h3>
+        <div class="focus">
+          <h3>Areas to strengthen</h3>
           <div class="weak"><span>Present perfect</span><b>61%</b></div>
           <div class="weak"><span>Conditionals (type 3)</span><b>66%</b></div>
           <div class="weak"><span>Word formation</span><b>70%</b></div>
         </div>
-        <div class="act"><a class="btn">Begin today's session <span>→</span></a>
+        <div class="act">
+          <a class="btn">Begin today's session <span>→</span></a>
           <div class="tiles"><a class="tile">Tests</a><a class="tile">Library</a><a class="tile">Writing</a></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== P2 VERMILION ===== -->
-  <section class="draft p2" data-name="Vermilion · ink + red">
+  <!-- ===== 02 QUIET ===== -->
+  <section class="draft quiet" data-name="Quiet · Minimal premium">
     <div class="wrap">
-      <div class="topbar rise">
-        <div class="brand">Tramit<b>·</b>English</div>
+      <div class="top rise">
+        <div class="brand">TramitEnglish</div>
         <nav class="menu"><a class="on">Home</a><a>Session</a><a>Tests</a><a>Library</a><a>Writing</a><a>Stats</a></nav>
       </div>
-      <div class="swatches rise">
-        <span class="lab">Vermilion</span>
-        <span class="sw"><span class="chip" style="background:#16150f"></span>#16150F</span>
-        <span class="sw"><span class="chip" style="background:#eef0ea"></span>#EEF0EA</span>
-        <span class="sw"><span class="chip" style="background:#dd3b1e"></span>#DD3B1E</span>
-      </div>
       <div class="hero rise">
-        <div class="greet"><div class="k">Good evening · 14 June</div><h1>Today, the present perfect starts to settle.</h1></div>
-        <div class="day"><div class="n">14<small>/60</small></div><div class="meta">Day of journey · 46 to go</div></div>
+        <div class="k">Good evening · <b>day 14</b></div>
+        <h1>One quiet hour moves the needle.</h1>
       </div>
-      <div class="bar rise"><i></i></div>
+      <div class="daywrap rise">
+        <div class="n">14<b> / 60</b></div>
+        <div class="pline"><i></i></div>
+        <div class="n" style="font-weight:500;color:#a5a397">46 left</div>
+      </div>
       <div class="stats rise">
-        <div class="stat"><div class="v">14</div><div class="n">Day streak</div></div>
-        <div class="stat"><div class="v">B2</div><div class="n">Estimated level</div></div>
-        <div class="stat"><div class="v">78<small>%</small></div><div class="n">Accuracy · 30d</div></div>
+        <div class="stat"><div class="v">14</div><div class="lab">Day streak</div></div>
+        <div class="stat"><div class="v">B2</div><div class="lab">Est. level</div></div>
+        <div class="stat"><div class="v">78<small>%</small></div><div class="lab">Accuracy 30d</div></div>
       </div>
+      <div class="hr rise"></div>
       <div class="lower rise">
-        <div class="focus"><h3>Areas to strengthen</h3>
-          <div class="weak"><span>Present perfect</span><b>61%</b></div>
-          <div class="weak"><span>Conditionals (type 3)</span><b>66%</b></div>
-          <div class="weak"><span>Word formation</span><b>70%</b></div>
+        <div class="lh">Areas to strengthen</div>
+        <div class="weak"><span><span class="dot"></span>Present perfect</span><b>61%</b></div>
+        <div class="weak"><span><span class="dot"></span>Conditionals (type 3)</span><b>66%</b></div>
+        <div class="weak"><span><span class="dot"></span>Word formation</span><b>70%</b></div>
+        <a class="btn">Begin today's session <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 CONSOLE ===== -->
+  <section class="draft console" data-name="Console · Instrument dark">
+    <div class="wrap">
+      <div class="frame rise">
+        <div class="bar">
+          <span class="led"><b></b> TramitEnglish · LEARNING UNIT</span>
+          <span>DAILY · 14 JUN · ONLINE</span>
         </div>
-        <div class="act"><a class="btn">Begin today's session <span>→</span></a>
-          <div class="tiles"><a class="tile">Tests</a><a class="tile">Library</a><a class="tile">Writing</a></div>
+        <div class="pad">
+          <div class="head">
+            <div class="t">Good<br>evening.</div>
+            <div class="ro">SESSION <b>014</b><br>TARGET <b>B2</b><br>UPTIME 14d</div>
+          </div>
+          <div class="meters">
+            <div class="m"><span class="lab">Streak</span><div class="scale"><div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="fill" style="right:6%"></div><div class="ndl" style="left:94%"></div></div><span class="val">14</span></div>
+            <div class="m"><span class="lab">Level</span><div class="scale"><div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="fill" style="right:32%"></div><div class="ndl" style="left:68%"></div></div><span class="val">B2</span></div>
+            <div class="m"><span class="lab">Accuracy</span><div class="scale"><div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="fill sig" style="right:22%"></div><div class="ndl" style="left:78%"></div></div><span class="val">78%</span></div>
+          </div>
+          <div class="strip">
+            <span class="k">DAY<br>14/60</span>
+            <div class="seg">
+              <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="cur"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <span class="k">46<br>LEFT</span>
+          </div>
+          <div class="foot">
+            <a class="run">Run session <span>▶</span></a>
+            <div class="pads"><a class="pd">Tests</a><a class="pd">Library</a><a class="pd">Writing</a></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== P3 MULBERRY ===== -->
-  <section class="draft p3" data-name="Mulberry · plum + blush">
+  <!-- ===== 04 SALON ===== -->
+  <section class="draft salon" data-name="Salon · Warm tactile">
     <div class="wrap">
-      <div class="topbar rise">
-        <div class="brand">Tramit<b>·</b>English</div>
+      <div class="top rise">
+        <div class="brand">TramitEnglish</div>
         <nav class="menu"><a class="on">Home</a><a>Session</a><a>Tests</a><a>Library</a><a>Writing</a><a>Stats</a></nav>
       </div>
-      <div class="swatches rise">
-        <span class="lab">Mulberry</span>
-        <span class="sw"><span class="chip" style="background:#3a1e32"></span>#3A1E32</span>
-        <span class="sw"><span class="chip" style="background:#f1e8de"></span>#F1E8DE</span>
-        <span class="sw"><span class="chip" style="background:#e08a72"></span>#E08A72</span>
-      </div>
       <div class="hero rise">
-        <div class="greet"><div class="k">Good evening · 14 June</div><h1>Today, the present perfect starts to settle.</h1></div>
-        <div class="day"><div class="n">14<small>/60</small></div><div class="meta">Day of journey · 46 to go</div></div>
+        <div class="card greet">
+          <div><div class="k">Good evening</div><h1>Let's make today count.</h1></div>
+          <a class="btn">Begin today's session →</a>
+        </div>
+        <div class="card ring">
+          <div class="rw">
+            <svg viewBox="0 0 148 148" width="148" height="148">
+              <circle cx="74" cy="74" r="66" fill="none" stroke="#56374c" stroke-width="9"/>
+              <circle cx="74" cy="74" r="66" fill="none" stroke="#e08a72" stroke-width="9" stroke-linecap="round" stroke-dasharray="414.7" stroke-dashoffset="318" transform="rotate(-90 74 74)"/>
+            </svg>
+            <div class="ctr"><b>14</b><span>/60 days</span></div>
+          </div>
+          <div class="cap">23% of the journey</div>
+        </div>
       </div>
-      <div class="bar rise"><i></i></div>
       <div class="stats rise">
-        <div class="stat"><div class="v">14</div><div class="n">Day streak</div></div>
-        <div class="stat"><div class="v">B2</div><div class="n">Estimated level</div></div>
-        <div class="stat"><div class="v">78<small>%</small></div><div class="n">Accuracy · 30d</div></div>
+        <div class="stcard"><div class="v">14</div><div class="n">Day streak</div></div>
+        <div class="stcard"><div class="v">B2</div><div class="n">Estimated level</div></div>
+        <div class="stcard"><div class="v">78<small>%</small></div><div class="n">Accuracy · 30d</div></div>
       </div>
       <div class="lower rise">
-        <div class="focus"><h3>Areas to strengthen</h3>
-          <div class="weak"><span>Present perfect</span><b>61%</b></div>
-          <div class="weak"><span>Conditionals (type 3)</span><b>66%</b></div>
-          <div class="weak"><span>Word formation</span><b>70%</b></div>
+        <div class="focus">
+          <h3>Areas to strengthen</h3>
+          <div class="weak"><span>Present perfect</span><span><a class="chip">practice</a><b>61%</b></span></div>
+          <div class="weak"><span>Conditionals (type 3)</span><span><a class="chip">practice</a><b>66%</b></span></div>
+          <div class="weak"><span>Word formation</span><span><a class="chip">practice</a><b>70%</b></span></div>
         </div>
-        <div class="act"><a class="btn">Begin today's session <span>→</span></a>
-          <div class="tiles"><a class="tile">Tests</a><a class="tile">Library</a><a class="tile">Writing</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== P4 CITRON ===== -->
-  <section class="draft p4" data-name="Citron · graphite + citron">
-    <div class="wrap">
-      <div class="topbar rise">
-        <div class="brand">Tramit<b>·</b>English</div>
-        <nav class="menu"><a class="on">Home</a><a>Session</a><a>Tests</a><a>Library</a><a>Writing</a><a>Stats</a></nav>
-      </div>
-      <div class="swatches rise">
-        <span class="lab">Citron</span>
-        <span class="sw"><span class="chip" style="background:#24231d"></span>#24231D</span>
-        <span class="sw"><span class="chip" style="background:#f2f1ea"></span>#F2F1EA</span>
-        <span class="sw"><span class="chip" style="background:#9fb016"></span>#9FB016</span>
-      </div>
-      <div class="hero rise">
-        <div class="greet"><div class="k">Good evening · 14 June</div><h1>Today, the present perfect starts to settle.</h1></div>
-        <div class="day"><div class="n">14<small>/60</small></div><div class="meta">Day of journey · 46 to go</div></div>
-      </div>
-      <div class="bar rise"><i></i></div>
-      <div class="stats rise">
-        <div class="stat"><div class="v">14</div><div class="n">Day streak</div></div>
-        <div class="stat"><div class="v">B2</div><div class="n">Estimated level</div></div>
-        <div class="stat"><div class="v">78<small>%</small></div><div class="n">Accuracy · 30d</div></div>
-      </div>
-      <div class="lower rise">
-        <div class="focus"><h3>Areas to strengthen</h3>
-          <div class="weak"><span>Present perfect</span><b>61%</b></div>
-          <div class="weak"><span>Conditionals (type 3)</span><b>66%</b></div>
-          <div class="weak"><span>Word formation</span><b>70%</b></div>
-        </div>
-        <div class="act"><a class="btn">Begin today's session <span>→</span></a>
-          <div class="tiles"><a class="tile">Tests</a><a class="tile">Library</a><a class="tile">Writing</a></div>
+        <div class="tiles">
+          <a class="tile">Practice tests <span class="ar">→</span></a>
+          <a class="tile">Grammar library <span class="ar">→</span></a>
+          <a class="tile">Writing &amp; correction <span class="ar">→</span></a>
         </div>
       </div>
     </div>
@@ -243,10 +325,10 @@ svg{display:block}
 
 </div>
 
-<div class="sw-hint">← → arrows · swipe · tap dots · same layout, judge the COLOUR</div>
+<div class="sw-hint">← → arrows · swipe · tap dots · each is a different STYLE</div>
 <nav class="switcher">
   <button class="sw-btn" id="prev" aria-label="Previous">‹</button>
-  <div class="sw-name"><span id="idx">01</span>/04 · <b id="nm">Evergreen</b></div>
+  <div class="sw-name"><span id="idx">01</span>/04 · <b id="nm">Press · Bold editorial</b></div>
   <div class="sw-dots" id="dots"></div>
   <button class="sw-btn" id="next" aria-label="Next">›</button>
 </nav>
