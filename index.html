@@ -3,594 +3,482 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TramitEnglish — Writing · 6 design drafts</title>
+<title>TramitEnglish — Writing · 6 drafts (vol. II)</title>
 
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Bricolage+Grotesque:wght@400;500;700;800&family=Syne:wght@600;700;800&family=Chivo:wght@400;700;900&family=Chivo+Mono:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Fontshare -->
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&f[]=cabinet-grotesk@400,700,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Archivo+Narrow:wght@400;600;700&family=Chivo+Mono:wght@400;500;700&family=Spline+Sans+Mono:wght@400;600&family=Yeseva+One&family=Playfair+Display:wght@500;700;900&family=Bitter:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================================= GLOBAL / META SHELL */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
-body{background:#0c0a09;color:#fff;font-family:'Spline Sans',sans-serif;overflow:hidden}
+body{background:#0c0a09;color:#fff;font-family:'Spectral',serif;overflow:hidden}
 #stage{position:relative;height:100vh;width:100vw}
-.draft{position:absolute;inset:0;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.draft{position:absolute;inset:0;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .4s ease}
 .draft.active{opacity:1;pointer-events:auto}
 .draft::-webkit-scrollbar{width:0}
-.wrap{max-width:760px;margin:0 auto;min-height:100vh}
-
-/* geometric symbol helpers reused conceptually; each draft styles its own */
+.wrap{max-width:740px;margin:0 auto;min-height:100vh}
 svg{display:block}
 
-/* ---- meta switcher (utility chrome, deliberately neutral) ---- */
-.switcher{
-  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
-  z-index:100;display:flex;align-items:center;gap:14px;
-  background:#1a1714;border:1px solid #2e2a25;border-radius:100px;
-  padding:8px 10px 8px 16px;box-shadow:0 10px 40px rgba(0,0,0,.5);
-  font-family:'Chivo Mono',monospace;
-}
-.sw-name{font-size:11px;letter-spacing:.08em;color:#cdbfa8;text-transform:uppercase;min-width:188px;white-space:nowrap}
+/* meta switcher */
+.switcher{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:14px;
+  background:#171310;border:1px solid #2c251e;border-radius:100px;padding:8px 10px 8px 16px;box-shadow:0 12px 44px rgba(0,0,0,.55);
+  font-family:'Chivo Mono',monospace}
+.sw-name{font-size:11px;letter-spacing:.07em;color:#c8b79b;text-transform:uppercase;min-width:210px;white-space:nowrap}
 .sw-name b{color:#fff;font-weight:700}
-.sw-btn{width:30px;height:30px;border-radius:50%;border:1px solid #3a352e;background:#0f0d0b;color:#e8dcc6;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
-.sw-btn:hover{background:#241f1a;border-color:#5a5147}
+.sw-btn{width:30px;height:30px;border-radius:50%;border:1px solid #3a3127;background:#0f0c0a;color:#e8d9c0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:.15s}
+.sw-btn:hover{background:#241d16;border-color:#5b4e3c}
 .sw-dots{display:flex;gap:7px;padding:0 4px}
-.sw-dot{width:7px;height:7px;border-radius:50%;background:#3a352e;cursor:pointer;transition:.2s}
-.sw-dot.on{background:#f0b429;transform:scale(1.25)}
-.sw-hint{position:fixed;left:50%;bottom:62px;transform:translateX(-50%);z-index:100;
-  font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.12em;color:#5a5147;text-transform:uppercase}
+.sw-dot{width:7px;height:7px;border-radius:50%;background:#3a3127;cursor:pointer;transition:.2s}
+.sw-dot.on{background:#d9a441;transform:scale(1.25)}
+.sw-hint{position:fixed;left:50%;bottom:62px;transform:translateX(-50%);z-index:100;font-family:'Chivo Mono',monospace;
+  font-size:10px;letter-spacing:.12em;color:#574b3a;text-transform:uppercase}
+.draft.active .rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
+.draft.active .rise:nth-child(2){animation-delay:.05s}.draft.active .rise:nth-child(3){animation-delay:.1s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-/* small entrance for content when a draft becomes active */
-.draft.active .rise{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
-.draft.active .rise:nth-child(2){animation-delay:.04s}
-.draft.active .rise:nth-child(3){animation-delay:.08s}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* ============================ D1 · SCRIPTORIUM (illuminated manuscript) */
+.d1{background:#e7ddc4;color:#2a2017;
+  background-image:radial-gradient(circle at 30% 20%,rgba(176,138,62,.06),transparent 60%),
+    repeating-linear-gradient(0deg,transparent 0 33px,rgba(42,32,23,.05) 33px 34px)}
+.d1 .wrap{padding:44px 30px 120px}
+.d1 .folio{display:flex;justify-content:space-between;font-family:'Cardo',serif;font-style:italic;font-size:13px;color:#7c6a4e}
+.d1 .folio .rub{color:#9b2d20;font-style:normal;letter-spacing:.18em;text-transform:uppercase;font-size:11px}
+.d1 .incipit{margin-top:26px;font-family:'Cardo',serif}
+.d1 .incipit .r{color:#9b2d20;letter-spacing:.14em;text-transform:uppercase;font-size:12px;display:block;margin-bottom:6px}
+.d1 .incipit h1{font-size:clamp(30px,6vw,46px);line-height:1.05;font-weight:700}
+.d1 .incipit h1 .drop{float:left;font-size:84px;line-height:.66;color:#9b2d20;padding:8px 12px 0 0;font-weight:700}
+.d1 .gloss{margin-top:26px;border-top:2px solid #9b2d20;border-bottom:1px solid #b6a079}
+.d1 .ms-text{font-family:'Cardo',serif;font-size:19px;line-height:2.6;padding:18px 0;position:relative}
+.d1 .ms-text .corr{position:relative;color:#2a2017}
+.d1 .ms-text .corr del{text-decoration:line-through;text-decoration-color:#9b2d20;color:#8a7a5e}
+.d1 .ms-text .corr ins{position:absolute;left:0;top:-1.15em;font-size:13px;color:#9b2d20;font-style:italic;text-decoration:none;white-space:nowrap}
+.d1 .margin{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:22px}
+.d1 .mk{padding:14px 14px 14px 0;border-right:1px solid #c2ad84}
+.d1 .mk:last-child{border-right:none}
+.d1 .mk .nm{font-family:'Cardo',serif;font-style:italic;font-size:13px;color:#7c6a4e}
+.d1 .mk .rn{font-family:'Cardo',serif;font-size:34px;color:#9b2d20;line-height:1;margin-top:2px}
+.d1 .mk .rn em{font-size:14px;color:#a8946e;font-style:normal}
+.d1 .mk .pips{margin-top:8px;display:flex;gap:4px}
+.d1 .mk .gilt{width:8px;height:8px;background:#b08a3e;transform:rotate(45deg)}
+.d1 .mk .gilt.e{background:transparent;border:1px solid #c2ad84}
+.d1 .explicit{margin-top:26px;font-family:'Cardo',serif;font-style:italic;font-size:16px;line-height:1.7;color:#4a3c2a}
+.d1 .explicit b{color:#9b2d20;font-style:normal}
 
-/* ============================================================= D1 · INKPRESS (editorial press) */
-.d1{background:#f1e8d8;color:#211b14;
-  background-image:radial-gradient(#ddcfb6 .8px,transparent .8px);background-size:22px 22px}
-.d1 .wrap{padding:46px 32px 120px;position:relative}
-.d1 .masthead{display:flex;justify-content:space-between;align-items:baseline;
-  border-bottom:2px solid #211b14;padding-bottom:10px}
-.d1 .mast-l{font-family:'Fraunces',serif;font-weight:900;font-size:13px;letter-spacing:.02em}
-.d1 .mast-r{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
-.d1 .kicker{font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;
-  color:#7b2233;margin:30px 0 6px}
-.d1 h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(34px,7vw,58px);line-height:.96;
-  letter-spacing:-.02em;max-width:11ch}
-.d1 .lede{font-family:'Newsreader',serif;font-size:16px;line-height:1.55;max-width:46ch;margin-top:16px;color:#3a3026}
-.d1 .lede .drop{float:left;font-family:'Fraunces',serif;font-weight:900;font-size:62px;line-height:.7;
-  padding:6px 10px 0 0;color:#7b2233}
-.d1 .rule{height:1px;background:#211b14;opacity:.35;margin:34px 0}
-.d1 .grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.d1 .score{padding:18px 20px 18px 0;border-top:1px solid #211b14}
-.d1 .score:nth-child(even){padding-left:20px;border-left:1px solid #211b14}
-.d1 .s-lab{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6b5d4a}
-.d1 .s-num{font-family:'Fraunces',serif;font-weight:900;font-size:46px;line-height:1;margin:4px 0 2px;display:flex;align-items:baseline;gap:4px}
-.d1 .s-num span{font-size:18px;color:#9c8a6f;font-weight:500}
-.d1 .pips{display:flex;gap:5px;margin:8px 0 10px}
-.d1 .pip{width:9px;height:9px;border-radius:50%;border:1.4px solid #211b14}
-.d1 .pip.f{background:#7b2233;border-color:#7b2233}
-.d1 .s-note{font-family:'Newsreader',serif;font-size:13.5px;line-height:1.5;color:#48402f}
-.d1 .pen{margin-top:34px;border:1px solid #211b14;background:#f7f0e3;padding:20px 22px}
-.d1 .pen h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7b2233;margin-bottom:12px}
-.d1 .pen p{font-family:'Newsreader',serif;font-size:18px;line-height:1.85;color:#211b14}
-.d1 .pen del{color:#9c8a6f;text-decoration:line-through;text-decoration-color:#b9485e}
-.d1 .pen ins{color:#7b2233;text-decoration:none;font-style:italic;border-bottom:1.5px solid #7b2233}
-.d1 .verdict{margin-top:30px;display:flex;gap:18px;align-items:flex-start}
-.d1 .verdict .q{font-family:'Fraunces',serif;font-weight:900;font-size:54px;color:#7b2233;line-height:.7}
-.d1 .verdict p{font-family:'Newsreader',serif;font-size:17px;line-height:1.55;color:#3a3026;max-width:48ch}
-.d1 .sigline{margin-top:18px;font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.1em;color:#6b5d4a}
+/* ============================ D2 · HERBARIUM (specimen plate) */
+.d2{background:#efe9d8;color:#3a3326}
+.d2 .wrap{padding:0 0 120px}
+.d2 .plate{margin:34px 22px;border:1px solid #b9b094;background:#f6f1e3;padding:26px 24px;position:relative;
+  box-shadow:0 1px 0 #fff inset,0 14px 40px rgba(80,70,45,.12)}
+.d2 .plate::before{content:"";position:absolute;inset:8px;border:1px solid #d8cfb2;pointer-events:none}
+.d2 .plate-h{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2}
+.d2 .plate-h .inst{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#6c6047}
+.d2 .plate-h .no{font-family:'Chivo Mono',monospace;font-size:11px;color:#8a7d5e;border:1px solid #c2b794;padding:3px 8px}
+.d2 h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:clamp(32px,6.5vw,50px);line-height:1.04;margin:14px 0 4px;position:relative;z-index:2}
+.d2 .latin{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:#7a6f52;position:relative;z-index:2}
+.d2 .specimens{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;position:relative;z-index:2}
+.d2 .spec{position:relative;padding:18px 16px 16px;background:#fbf7ec;border:1px solid #ddd3b6}
+.d2 .pin{position:absolute;top:-7px;left:50%;transform:translateX(-50%)}
+.d2 .spec .sci{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#3a3326}
+.d2 .spec .com{font-family:'Chivo Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#9a8d6c;margin:3px 0 12px}
+.d2 .spec .stem{display:flex;align-items:flex-end;gap:5px;height:34px;margin-bottom:12px}
+.d2 .spec .leaf{width:9px;background:#7d8a4e;border-radius:50% 50% 50% 0;transform:rotate(8deg)}
+.d2 .spec .leaf.dry{background:#cbbf9a}
+.d2 .spec .tag{display:flex;justify-content:space-between;border-top:1px dotted #c2b794;padding-top:8px;
+  font-family:'Cormorant Garamond',serif;font-size:14px;color:#5a5038}
+.d2 .spec .tag b{font-family:'Chivo Mono',monospace;font-size:13px;color:#a14a3a}
+.d2 .note{margin-top:24px;position:relative;z-index:2;border-top:1px solid #c2b794;padding-top:16px}
+.d2 .note h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#a14a3a;margin-bottom:8px}
+.d2 .note p{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.85}
+.d2 .note del{color:#9a8d6c;text-decoration:line-through;text-decoration-color:#a14a3a}
+.d2 .note ins{color:#5b6a34;text-decoration:none;font-style:italic}
+.d2 .det{margin-top:18px;display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:2}
+.d2 .det .verdict{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:#5a5038;max-width:42ch;line-height:1.5}
+.d2 .det .lvl{font-family:'Cormorant Garamond',serif;font-size:40px;color:#7d8a4e}
+.d2 .det .lvl em{font-family:'Chivo Mono',monospace;font-size:9px;letter-spacing:.14em;display:block;color:#9a8d6c;text-transform:uppercase;text-align:right}
 
-/* ============================================================= D2 · CONCRETE (brutalist) */
-.d2{background:#e6e2d6;color:#11100d;font-family:'Chivo Mono',monospace}
-.d2 .wrap{padding:0 0 120px;max-width:820px}
-.d2 .topbar{display:flex;justify-content:space-between;align-items:stretch;border-bottom:3px solid #11100d}
-.d2 .topbar div{padding:16px 18px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-.d2 .topbar .b{background:#11100d;color:#e6e2d6}
-.d2 .hero{border-bottom:3px solid #11100d;padding:24px 18px 26px;position:relative}
-.d2 .tag{display:inline-block;background:#e8431f;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;padding:4px 9px;margin-bottom:14px}
-.d2 .hero h1{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(30px,7vw,56px);
-  line-height:.95;text-transform:uppercase;letter-spacing:-.01em}
-.d2 .hero .meta{margin-top:14px;font-size:12px;letter-spacing:.04em;color:#3a382f}
-.d2 .scoregrid{display:grid;grid-template-columns:1fr 1fr}
-.d2 .cell{border-bottom:3px solid #11100d;border-right:3px solid #11100d;padding:18px}
-.d2 .cell:nth-child(even){border-right:none}
-.d2 .c-top{display:flex;justify-content:space-between;align-items:flex-start}
-.d2 .c-lab{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;max-width:16ch}
-.d2 .c-num{font-family:'Clash Display',sans-serif;font-weight:700;font-size:40px;line-height:.8}
-.d2 .c-num em{font-size:15px;color:#8a8474;font-style:normal}
-.d2 .blocks{display:flex;gap:4px;margin:14px 0 10px}
-.d2 .blk{flex:1;height:16px;border:2px solid #11100d}
-.d2 .blk.f{background:#11100d}
-.d2 .blk.a{background:#e8431f;border-color:#e8431f}
-.d2 .c-note{font-size:12px;line-height:1.55;color:#33312a}
-.d2 .pen{padding:22px 18px;border-bottom:3px solid #11100d}
-.d2 .pen h3{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
-.d2 .pen p{font-size:16px;line-height:2;font-family:'Chivo Mono',monospace}
-.d2 .pen del{background:#11100d;color:#e6e2d6;text-decoration:none;padding:0 3px}
-.d2 .pen ins{background:#e8431f;color:#fff;text-decoration:none;padding:0 3px}
-.d2 .foot{padding:22px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
-.d2 .foot p{font-size:13px;line-height:1.6;max-width:46ch}
-.d2 .bigband{font-family:'Clash Display',sans-serif;font-weight:700;font-size:64px;line-height:.8;text-align:right}
-.d2 .bigband em{display:block;font-size:11px;letter-spacing:.14em;font-style:normal;color:#8a8474;text-transform:uppercase}
+/* ============================ D3 · SAMPLER (needlework) */
+.d3{background:#e3d8bd;color:#33271f;
+  background-image:linear-gradient(rgba(120,95,70,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(120,95,70,.08) 1px,transparent 1px);
+  background-size:13px 13px}
+.d3 .wrap{padding:30px 22px 120px}
+.d3 .frame{border:6px solid transparent;border-image:repeating-linear-gradient(45deg,#b23a48 0 7px,#33271f 7px 14px) 6;padding:26px 22px;background:#e9e0c9}
+.d3 .motto{text-align:center;font-family:'General Sans',sans-serif;font-weight:600;letter-spacing:.32em;text-transform:uppercase;
+  font-size:11px;color:#7c5a3e}
+.d3 .alpha{text-align:center;font-family:'Chivo Mono',monospace;letter-spacing:.34em;color:#b23a48;font-size:12px;margin:8px 0 22px}
+.d3 h1{text-align:center;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(26px,5.5vw,40px);line-height:1.04;color:#33271f}
+.d3 .task{text-align:center;font-family:'General Sans',sans-serif;font-size:12px;color:#6e5b45;letter-spacing:.04em;margin-top:8px}
+.d3 .stitchrows{margin-top:26px;display:flex;flex-direction:column;gap:16px}
+.d3 .srow{display:flex;align-items:center;gap:14px}
+.d3 .srow .lab{flex:1;font-family:'General Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#5a4733}
+.d3 .cells{display:flex;gap:6px}
+.d3 .x{width:20px;height:20px}
+.d3 .srow .val{font-family:'Chivo Mono',monospace;font-size:12px;color:#b23a48;width:3ch;text-align:right}
+.d3 .sep{height:1px;background:repeating-linear-gradient(90deg,#b23a48 0 5px,transparent 5px 10px);margin:24px 0}
+.d3 .mend h3{text-align:center;font-family:'General Sans',sans-serif;font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7c5a3e;margin-bottom:10px}
+.d3 .mend p{font-family:'Fraunces',serif;font-size:17px;line-height:1.9;text-align:center}
+.d3 .mend del{color:#9a8666;text-decoration:line-through;text-decoration-color:#b23a48}
+.d3 .mend ins{color:#4a5d3a;text-decoration:none;font-style:italic}
+.d3 .signed{text-align:center;margin-top:22px;font-family:'General Sans',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7c5a3e}
+.d3 .signed b{font-family:'Fraunces',serif;font-size:30px;color:#b23a48;display:block;letter-spacing:0;text-transform:none;margin-top:4px}
 
-/* ============================================================= D3 · ATELIER (organic studio) */
-.d3{background:#e4e8dd;color:#23291f}
-.d3 .wrap{padding:48px 30px 120px}
-.d3 .top{display:flex;align-items:center;gap:12px;font-family:'Bricolage Grotesque',sans-serif;
-  font-size:12px;letter-spacing:.04em;color:#5b6650;text-transform:uppercase;font-weight:600}
-.d3 .seed{width:14px;height:14px;background:#c2603f;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}
-.d3 h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(32px,6.5vw,52px);
-  line-height:1.02;letter-spacing:-.02em;margin:26px 0 8px;max-width:15ch}
-.d3 .sub{font-family:'Bricolage Grotesque',sans-serif;font-size:15px;color:#4d573f;max-width:50ch;line-height:1.55}
-.d3 .card{background:#eef1e8;border-radius:22px;padding:26px;margin-top:30px;border:1px solid #d3dac8}
-.d3 .rowlab{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:13px;letter-spacing:.02em;
-  text-transform:uppercase;color:#5b6650;margin-bottom:18px}
-.d3 .srow{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-.d3 .srow:last-child{margin-bottom:0}
-.d3 .diamond{width:11px;height:11px;background:#2f4a37;transform:rotate(45deg);flex-shrink:0}
-.d3 .srow.warn .diamond{background:#c2603f}
-.d3 .s-meta{flex:1;min-width:0}
-.d3 .s-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;display:flex;justify-content:space-between}
-.d3 .s-name b{font-weight:800}
-.d3 .s-name b em{font-style:normal;color:#9aa78c;font-weight:600;font-size:12px}
-.d3 .track{height:9px;background:#dde3d3;border-radius:20px;margin-top:8px;overflow:hidden}
-.d3 .fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#3a5c44,#2f4a37)}
-.d3 .fill.warn{background:linear-gradient(90deg,#d4754f,#c2603f)}
-.d3 .pen{background:#23291f;color:#e4e8dd;border-radius:22px;padding:26px;margin-top:22px}
-.d3 .pen h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;
-  text-transform:uppercase;color:#a9b89d;margin-bottom:14px}
-.d3 .pen p{font-size:17px;line-height:1.95;font-family:'Bricolage Grotesque',sans-serif}
-.d3 .pen del{color:#8d9a82;text-decoration:line-through}
-.d3 .pen ins{color:#e8a87f;text-decoration:none;font-weight:600}
-.d3 .tips{margin-top:22px;display:flex;flex-direction:column;gap:12px}
-.d3 .tip{display:flex;gap:13px;align-items:flex-start;font-family:'Bricolage Grotesque',sans-serif;
-  font-size:14.5px;line-height:1.5;color:#3a4332}
-.d3 .tip .dot{width:7px;height:7px;border-radius:50%;background:#c2603f;margin-top:7px;flex-shrink:0}
+/* ============================ D4 · SURVEY (topographic map) */
+.d4{background:#e8ddc4;color:#4a3b26}
+.d4 .wrap{padding:40px 28px 120px}
+.d4 .legend{display:flex;justify-content:space-between;align-items:center;font-family:'Chivo Mono',monospace;font-size:10px;
+  letter-spacing:.12em;text-transform:uppercase;color:#8a7350;border-bottom:1.5px solid #4a3b26;padding-bottom:10px}
+.d4 .legend .bench{display:flex;align-items:center;gap:8px;color:#d2552c}
+.d4 .title{margin-top:26px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.d4 .title h1{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:clamp(30px,7vw,54px);line-height:.92;
+  text-transform:uppercase;letter-spacing:.01em}
+.d4 .title .coord{font-family:'Chivo Mono',monospace;font-size:10.5px;color:#8a7350;text-align:right;line-height:1.7;white-space:nowrap}
+.d4 .map{margin-top:24px;border:1.5px solid #4a3b26;background:#efe6d0;position:relative;overflow:hidden}
+.d4 .map .contours{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.d4 .readings{position:relative;z-index:2}
+.d4 .rd{display:flex;align-items:center;gap:16px;padding:16px 18px;border-bottom:1px dashed #c0ad84}
+.d4 .rd:last-child{border-bottom:none}
+.d4 .rd .ring{width:38px;height:38px;flex-shrink:0}
+.d4 .rd .nm{flex:1;font-family:'Archivo Narrow',sans-serif;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.04em}
+.d4 .rd .nm em{display:block;font-family:'Chivo Mono',monospace;font-size:9.5px;letter-spacing:.08em;color:#8a7350;text-transform:none;margin-top:2px}
+.d4 .rd .elev{font-family:'Chivo Mono',monospace;font-size:13px;color:#d2552c}
+.d4 .fieldnote{margin-top:24px;border:1.5px solid #4a3b26;padding:16px 18px;background:#efe6d0}
+.d4 .fieldnote h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#d2552c;margin-bottom:10px}
+.d4 .fieldnote p{font-family:'Archivo Narrow',sans-serif;font-size:16px;line-height:1.85}
+.d4 .fieldnote del{color:#9a866a;text-decoration:line-through;text-decoration-color:#d2552c}
+.d4 .fieldnote ins{color:#6b5638;text-decoration:none;border-bottom:1.5px solid #d2552c}
+.d4 .summit{margin-top:22px;display:flex;align-items:center;gap:16px}
+.d4 .summit .tri{width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:26px solid #d2552c}
+.d4 .summit .b{font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:40px;text-transform:uppercase}
+.d4 .summit p{font-family:'Chivo Mono',monospace;font-size:11px;line-height:1.7;color:#6b5638;max-width:40ch}
 
-/* ============================================================= D4 · TERMINAL 86 (retro-futurist) */
-.d4{background:#14100b;color:#f3e4c8;font-family:'Chivo Mono',monospace;
-  background-image:repeating-linear-gradient(0deg,rgba(255,176,0,.035) 0 1px,transparent 1px 3px)}
-.d4 .wrap{padding:42px 26px 120px}
-.d4 .bar{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;
-  color:#8a6b34;border-bottom:1px dashed #4a3a1c;padding-bottom:10px}
-.d4 .bar .amber{color:#ffb000}
-.d4 h1{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,6vw,48px);
-  line-height:1;letter-spacing:.01em;margin:28px 0 6px;color:#ffd27a;text-shadow:0 0 22px rgba(255,176,0,.25)}
-.d4 .prompt{font-size:13px;line-height:1.7;color:#cdb585;max-width:54ch}
-.d4 .prompt .c{color:#ffb000}
-.d4 .ledger{margin-top:30px;border:1px solid #4a3a1c}
-.d4 .lrow{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #2a2010}
-.d4 .lrow:last-child{border-bottom:none}
-.d4 .l-key{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#a98c52;width:8ch;flex-shrink:0}
-.d4 .l-name{flex:1;font-size:13.5px;color:#f3e4c8;min-width:0}
-.d4 .asciibar{font-size:15px;letter-spacing:2px;color:#ffb000;white-space:nowrap}
-.d4 .asciibar .o{color:#4a3a1c}
-.d4 .l-num{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:22px;color:#ffd27a;width:3ch;text-align:right}
-.d4 .pen{margin-top:28px;border:1px solid #4a3a1c;padding:18px 16px}
-.d4 .pen h3{font-size:11px;letter-spacing:.16em;color:#ffb000;margin-bottom:12px}
-.d4 .pen p{font-size:14px;line-height:2;color:#cdb585}
-.d4 .pen del{color:#7a5f2e;text-decoration:line-through}
-.d4 .pen ins{color:#ffb000;text-decoration:none}
-.d4 .pen ins::before{content:"▸ "}
-.d4 .out{margin-top:26px;display:flex;gap:18px;align-items:flex-start;border-top:1px dashed #4a3a1c;padding-top:22px}
-.d4 .out .band{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:50px;color:#ffb000;line-height:.8}
-.d4 .out .band em{display:block;font-size:10px;letter-spacing:.16em;font-style:normal;color:#8a6b34;margin-top:8px}
-.d4 .out p{font-size:13px;line-height:1.7;color:#cdb585;max-width:46ch}
-.d4 .cursor{display:inline-block;width:9px;height:15px;background:#ffb000;margin-left:2px;animation:blink 1s steps(1) infinite;vertical-align:-2px}
-@keyframes blink{50%{opacity:0}}
+/* ============================ D5 · APOTHECARY (prescription) */
+.d5{background:#ece4d2;color:#241d15}
+.d5 .wrap{padding:34px 24px 120px}
+.d5 .label{background:#f6f0e1;border:2px solid #241d15}
+.d5 .label-top{display:flex;justify-content:space-between;align-items:center;background:#2f5d3f;color:#eee7d4;padding:10px 16px;
+  font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.d5 .label-body{padding:22px 20px}
+.d5 .rx{display:flex;align-items:flex-start;gap:14px}
+.d5 .rx .glyph{font-family:'Yeseva One',serif;font-size:64px;line-height:.7;color:#b1342a}
+.d5 .rx h1{font-family:'Yeseva One',serif;font-size:clamp(26px,5.5vw,40px);line-height:1.02}
+.d5 .rx .sub{font-family:'Cardo',serif;font-style:italic;font-size:15px;color:#5a5040;margin-top:4px}
+.d5 .dosage{margin-top:22px;border-top:1px solid #c7bba0;border-bottom:1px solid #c7bba0}
+.d5 .dose{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px dotted #cfc4a8}
+.d5 .dose:last-child{border-bottom:none}
+.d5 .dose .nm{flex:1;font-family:'Cardo',serif;font-size:17px}
+.d5 .dose .nm em{font-family:'Chivo Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9b8e70;display:block;font-style:normal;margin-top:1px}
+.d5 .grad{width:120px;height:12px;border:1px solid #241d15;position:relative;background:repeating-linear-gradient(90deg,transparent 0 23px,#241d15 23px 24px)}
+.d5 .grad i{position:absolute;left:0;top:0;bottom:0;background:#2f5d3f}
+.d5 .grad i.lo{background:#b1342a}
+.d5 .dose .amt{font-family:'Chivo Mono',monospace;font-size:12px;width:3ch;text-align:right;color:#b1342a}
+.d5 .sig{margin-top:20px}
+.d5 .sig h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#b1342a;margin-bottom:8px}
+.d5 .sig p{font-family:'Cardo',serif;font-size:18px;line-height:1.95}
+.d5 .sig del{color:#9b8e70;text-decoration:line-through;text-decoration-color:#b1342a}
+.d5 .sig ins{color:#2f5d3f;text-decoration:none;font-style:italic}
+.d5 .seal{margin-top:22px;display:flex;align-items:center;gap:16px}
+.d5 .seal .wax{width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#c8483c,#8e231b);
+  display:flex;align-items:center;justify-content:center;color:#efd9c4;font-family:'Yeseva One',serif;font-size:20px;box-shadow:0 4px 10px rgba(120,30,20,.35)}
+.d5 .seal p{font-family:'Cardo',serif;font-style:italic;font-size:15px;line-height:1.55;color:#5a5040;max-width:40ch}
+.d5 .seal p b{font-style:normal;color:#241d15}
 
-/* ============================================================= D5 · DOSSIER (dense report) */
-.d5{background:#f1f0ea;color:#16181a;font-family:'Chivo',sans-serif}
-.d5 .wrap{padding:40px 32px 120px;max-width:800px}
-.d5 .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #16181a;padding-bottom:12px}
-.d5 .head .id{font-family:'Chivo',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6b6e6a}
-.d5 .head h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(26px,5vw,40px);line-height:1;letter-spacing:-.01em}
-.d5 .head .ref{font-family:'Chivo',sans-serif;font-size:10px;letter-spacing:.1em;color:#b8860b;text-transform:uppercase}
-.d5 .meta-strip{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #c9c8c0}
-.d5 .ms{padding:12px 14px 12px 0;border-right:1px solid #c9c8c0}
-.d5 .ms:last-child{border-right:none;padding-right:0}
-.d5 .ms .k{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8a8d88}
-.d5 .ms .v{font-family:'Fraunces',serif;font-weight:600;font-size:19px;margin-top:3px}
-.d5 .ms .v em{font-size:11px;color:#b8860b;font-style:normal}
-.d5 table{width:100%;border-collapse:collapse;margin-top:8px}
-.d5 .secthead{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#16181a;font-weight:700;
-  padding:20px 0 8px;border-bottom:1px solid #16181a}
-.d5 td{padding:13px 8px;border-bottom:1px solid #d6d5cd;vertical-align:top;font-size:13px;line-height:1.5}
-.d5 td.idx{width:26px;font-family:'Chivo Mono',monospace;font-size:11px;color:#b8860b}
-.d5 td.nm{width:30%;font-weight:700;font-size:13px}
-.d5 td .micro{display:flex;align-items:center;gap:8px;margin-top:6px}
-.d5 td .hbar{height:5px;width:90px;background:#dcdbd3;position:relative}
-.d5 td .hbar i{position:absolute;left:0;top:0;bottom:0;background:#16181a}
-.d5 td .hbar i.lo{background:#b8860b}
-.d5 td .sc{font-family:'Chivo Mono',monospace;font-size:11px;color:#6b6e6a}
-.d5 td.note{color:#3c3f3a}
-.d5 .pen{margin-top:8px;border:1px solid #16181a;padding:16px 18px;background:#f7f6f1}
-.d5 .pen h3{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#b8860b;margin-bottom:10px}
-.d5 .pen p{font-family:'Newsreader',serif;font-size:16px;line-height:1.9}
-.d5 .pen del{color:#9a9990;text-decoration:line-through}
-.d5 .pen ins{color:#16181a;text-decoration:none;background:#f3e3b8;padding:0 2px;font-weight:500}
-.d5 .summary{display:flex;gap:16px;margin-top:18px;align-items:flex-start}
-.d5 .summary .q{font-family:'Fraunces',serif;font-weight:900;font-size:44px;line-height:.8}
-.d5 .summary .q em{font-size:14px;color:#8a8d88;font-style:normal}
-.d5 .summary p{font-size:13px;line-height:1.6;color:#3c3f3a;max-width:50ch}
-
-/* ============================================================= D6 · OVERPRINT (risograph poster) */
-.d6{background:#b5431f;color:#f6e9d8;font-family:'General Sans',sans-serif;position:relative;overflow:hidden}
-.d6 .blob{position:absolute;border-radius:50%;mix-blend-mode:multiply;pointer-events:none}
-.d6 .b1{width:340px;height:340px;background:#143025;top:-90px;right:-70px}
-.d6 .b2{width:240px;height:240px;background:#ff7a5c;bottom:60px;left:-90px;mix-blend-mode:screen;opacity:.55}
-.d6 .wrap{padding:46px 30px 130px;position:relative;z-index:2}
-.d6 .ey{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#f4cdbb}
-.d6 .sq{width:12px;height:12px;border:2px solid #f6e9d8;transform:rotate(45deg)}
-.d6 h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(40px,11vw,92px);line-height:.86;
-  letter-spacing:-.03em;margin:18px 0 10px;text-transform:uppercase}
-.d6 h1 .ink{color:#143025}
-.d6 .pr{font-size:15px;line-height:1.5;max-width:42ch;color:#f4d9c8}
-.d6 .scores{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:34px;background:#f6e9d8}
-.d6 .sc{background:#b5431f;padding:20px 18px;position:relative}
-.d6 .sc .n{font-family:'Syne',sans-serif;font-weight:800;font-size:58px;line-height:.8;color:#f6e9d8}
-.d6 .sc .n em{font-size:18px;color:#f4a98c;font-style:normal}
-.d6 .sc.hot .n{color:#143025}
-.d6 .sc .lab{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:10px;color:#f4d9c8}
-.d6 .sc .mk{position:absolute;top:18px;right:18px;width:12px;height:12px;background:#143025;transform:rotate(45deg)}
-.d6 .sc.hot .mk{background:#ff7a5c}
-.d6 .pen{margin-top:26px;background:#143025;padding:24px;border-radius:2px}
-.d6 .pen h3{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#9fc4a8;margin-bottom:14px}
-.d6 .pen p{font-size:17px;line-height:1.9;color:#e8efe2}
-.d6 .pen del{color:#7d9685;text-decoration:line-through}
-.d6 .pen ins{color:#ff9c7d;text-decoration:none;font-weight:600}
-.d6 .verdict{margin-top:26px;display:flex;align-items:flex-start;gap:18px}
-.d6 .verdict .big{font-family:'Syne',sans-serif;font-weight:800;font-size:74px;line-height:.78;color:#143025}
-.d6 .verdict p{font-size:15px;line-height:1.5;color:#f4d9c8;max-width:42ch;font-weight:500}
+/* ============================ D6 · ALMANAC (night almanac, dark) */
+.d6{background:#161009;color:#e8dcc2;
+  background-image:radial-gradient(circle at 78% 16%,rgba(217,164,65,.14),transparent 42%),
+    radial-gradient(circle at 12% 88%,rgba(120,90,40,.12),transparent 45%)}
+.d6 .wrap{padding:40px 26px 120px}
+.d6 .masth{text-align:center;border-bottom:2px double #5b4a2c;padding-bottom:14px}
+.d6 .masth .est{font-family:'Chivo Mono',monospace;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#9a8456}
+.d6 .masth h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,7vw,52px);line-height:1;color:#e8dcc2;margin:6px 0 2px}
+.d6 .masth .date{font-family:'Bitter',serif;font-style:italic;font-size:14px;color:#c9b585}
+.d6 .sun{margin:18px auto 0;width:46px;height:46px}
+.d6 .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border-top:1px solid #5b4a2c}
+.d6 .col{padding:18px 16px}
+.d6 .col:first-child{border-right:1px solid #5b4a2c}
+.d6 .colh{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#d9a441;margin-bottom:14px}
+.d6 .phase{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.d6 .phase:last-child{margin-bottom:0}
+.d6 .moon{width:24px;height:24px;border-radius:50%;border:1.5px solid #9a8456;position:relative;overflow:hidden;flex-shrink:0;background:#1d160d}
+.d6 .moon i{position:absolute;top:0;bottom:0;left:0;background:#d9a441}
+.d6 .phase .pn{flex:1;font-family:'Bitter',serif;font-size:14px}
+.d6 .phase .pv{font-family:'Chivo Mono',monospace;font-size:12px;color:#d9a441}
+.d6 .reading{padding:18px 16px;border-top:1px solid #5b4a2c;border-bottom:1px solid #5b4a2c}
+.d6 .reading h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#d9a441;margin-bottom:10px}
+.d6 .reading p{font-family:'Bitter',serif;font-size:16px;line-height:1.95}
+.d6 .reading del{color:#8c7a52;text-decoration:line-through;text-decoration-color:#d9a441}
+.d6 .reading ins{color:#f0c878;text-decoration:none;font-style:italic}
+.d6 .prog{margin-top:20px;display:flex;align-items:center;gap:16px}
+.d6 .prog .lvl{font-family:'Playfair Display',serif;font-weight:900;font-size:46px;color:#d9a441;line-height:.8}
+.d6 .prog p{font-family:'Bitter',serif;font-style:italic;font-size:14px;line-height:1.6;color:#c9b585;max-width:42ch}
 
 @media(max-width:560px){
-  .d1 .grid,.d2 .scoregrid,.d5 .meta-strip,.d6 .scores{grid-template-columns:1fr}
-  .d2 .cell:nth-child(even){border-right:none}
-  .d5 .ms{border-right:none}
+  .d1 .margin,.d2 .specimens,.d6 .twocol{grid-template-columns:1fr}
+  .d1 .mk{border-right:none;border-bottom:1px solid #c2ad84}
+  .d6 .col:first-child{border-right:none;border-bottom:1px solid #5b4a2c}
   .sw-name{min-width:120px;font-size:10px}
 }
 </style>
 </head>
 <body>
-
 <div id="stage">
 
-  <!-- ============================== D1 · INKPRESS ============================== -->
-  <section class="draft d1 active" data-name="Inkpress · Editorial">
+  <!-- ===== D1 · SCRIPTORIUM ===== -->
+  <section class="draft d1 active" data-name="Scriptorium · Manuscript">
     <div class="wrap">
-      <div class="masthead rise">
-        <div class="mast-l">THE TRAMIT REVIEW</div>
-        <div class="mast-r">Writing · Part 1 · Essay</div>
+      <div class="folio rise"><span>Codex Anglicus · fol. 1r</span><span class="rub">De Scriptura · Pars I</span></div>
+      <div class="incipit rise">
+        <span class="r">Incipit — the marking of an essay</span>
+        <h1><span class="drop">C</span>ars should be banished from the centres of cities. Thus runs the question put to the hand of the scholar.</h1>
       </div>
-      <div class="kicker rise">Examiner's Marking</div>
-      <h1 class="rise">A clear case, a few cracks.</h1>
-      <p class="lede rise"><span class="drop">“</span>Cars should be banned from city centres.” Do you agree? — an essay on pollution, public transport and your own idea, assessed against the Cambridge B2 First scale.</p>
-      <div class="rule rise"></div>
-      <div class="grid rise">
-        <div class="score">
-          <div class="s-lab">Content</div>
-          <div class="s-num">4<span>/5</span></div>
-          <div class="pips"><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip"></i></div>
-          <div class="s-note">All three points addressed; the reader is informed, with a minor digression in paragraph two.</div>
-        </div>
-        <div class="score">
-          <div class="s-lab">Communicative Achievement</div>
-          <div class="s-num">3<span>/5</span></div>
-          <div class="pips"><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip"></i><i class="pip"></i></div>
-          <div class="s-note">Essay conventions held; tone occasionally slips toward the conversational.</div>
-        </div>
-        <div class="score">
-          <div class="s-lab">Organisation</div>
-          <div class="s-num">4<span>/5</span></div>
-          <div class="pips"><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip"></i></div>
-          <div class="s-note">Logical flow, varied linkers; the conclusion could bind the threads more tightly.</div>
-        </div>
-        <div class="score">
-          <div class="s-lab">Language</div>
-          <div class="s-num">3<span>/5</span></div>
-          <div class="pips"><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip"></i><i class="pip"></i></div>
-          <div class="s-note">Good everyday range; complex tenses attempted but not always controlled.</div>
+      <div class="gloss rise">
+        <div class="ms-text">
+          Nowadays, cars
+          <span class="corr"><del>are became</del><ins>have become</ins></span>
+          a true affliction of the city centre, and they ought to be banned, for they
+          <span class="corr"><del>make a lot of pollution</del><ins>cause a great deal of pollution</ins></span>.
         </div>
       </div>
-      <div class="pen rise">
-        <h3>In the margin — red pen</h3>
-        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem in the city centre. In my opinion, they should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
+      <div class="margin rise">
+        <div class="mk"><div class="nm">Contentus</div><div class="rn">iv<em>·v</em></div><div class="pips"><i class="gilt"></i><i class="gilt"></i><i class="gilt"></i><i class="gilt"></i><i class="gilt e"></i></div></div>
+        <div class="mk"><div class="nm">Communicatio</div><div class="rn">iii<em>·v</em></div><div class="pips"><i class="gilt"></i><i class="gilt"></i><i class="gilt"></i><i class="gilt e"></i><i class="gilt e"></i></div></div>
+        <div class="mk"><div class="nm">Ordinatio</div><div class="rn">iv<em>·v</em></div><div class="pips"><i class="gilt"></i><i class="gilt"></i><i class="gilt"></i><i class="gilt"></i><i class="gilt e"></i></div></div>
+        <div class="mk"><div class="nm">Lingua</div><div class="rn">iii<em>·v</em></div><div class="pips"><i class="gilt"></i><i class="gilt"></i><i class="gilt"></i><i class="gilt e"></i><i class="gilt e"></i></div></div>
       </div>
-      <div class="verdict rise">
-        <div class="q">B2</div>
-        <p>A solid, persuasive script that earns its band. Tighten verb control and hold a consistent formal register, and the next draft reaches into Band 4 territory throughout.<br><span class="sigline">— Marked against Cambridge English Writing Assessment Scale · 178 words</span></p>
+      <p class="explicit rise"><b>Explicit.</b> A worthy hand, judged at the level <b>B2</b>. Let the scribe master the perfect tense and keep one solemn register throughout, and the work shall be illuminated brighter still. — 178 words.</p>
+    </div>
+  </section>
+
+  <!-- ===== D2 · HERBARIUM ===== -->
+  <section class="draft d2" data-name="Herbarium · Specimen plate">
+    <div class="wrap">
+      <div class="plate rise">
+        <div class="plate-h">
+          <div class="inst">Herbarium · TramitEnglish</div>
+          <div class="no">PL. 01 · WR</div>
+        </div>
+        <h1>Cars should be banned<br>from city centres</h1>
+        <div class="latin">Argumentum urbanum · Part 1 essay · coll. 178 words</div>
+
+        <div class="specimens">
+          <div class="spec">
+            <svg class="pin" width="14" height="22" viewBox="0 0 14 22"><circle cx="7" cy="4" r="3.4" fill="#a14a3a"/><line x1="7" y1="7" x2="7" y2="21" stroke="#6c6047" stroke-width="1.3"/></svg>
+            <div class="sci">Contentum</div>
+            <div class="com">fulfilment of task</div>
+            <div class="stem"><i class="leaf" style="height:26px"></i><i class="leaf" style="height:31px"></i><i class="leaf" style="height:22px"></i><i class="leaf" style="height:29px"></i><i class="leaf dry" style="height:16px"></i></div>
+            <div class="tag"><span>reader informed</span><b>4/5</b></div>
+          </div>
+          <div class="spec">
+            <svg class="pin" width="14" height="22" viewBox="0 0 14 22"><circle cx="7" cy="4" r="3.4" fill="#a14a3a"/><line x1="7" y1="7" x2="7" y2="21" stroke="#6c6047" stroke-width="1.3"/></svg>
+            <div class="sci">Communicatio</div>
+            <div class="com">register &amp; conventions</div>
+            <div class="stem"><i class="leaf" style="height:24px"></i><i class="leaf" style="height:28px"></i><i class="leaf" style="height:20px"></i><i class="leaf dry" style="height:15px"></i><i class="leaf dry" style="height:13px"></i></div>
+            <div class="tag"><span>tone drifts</span><b>3/5</b></div>
+          </div>
+          <div class="spec">
+            <svg class="pin" width="14" height="22" viewBox="0 0 14 22"><circle cx="7" cy="4" r="3.4" fill="#a14a3a"/><line x1="7" y1="7" x2="7" y2="21" stroke="#6c6047" stroke-width="1.3"/></svg>
+            <div class="sci">Ordinatio</div>
+            <div class="com">coherence &amp; linking</div>
+            <div class="stem"><i class="leaf" style="height:27px"></i><i class="leaf" style="height:32px"></i><i class="leaf" style="height:24px"></i><i class="leaf" style="height:28px"></i><i class="leaf dry" style="height:17px"></i></div>
+            <div class="tag"><span>well ordered</span><b>4/5</b></div>
+          </div>
+          <div class="spec">
+            <svg class="pin" width="14" height="22" viewBox="0 0 14 22"><circle cx="7" cy="4" r="3.4" fill="#a14a3a"/><line x1="7" y1="7" x2="7" y2="21" stroke="#6c6047" stroke-width="1.3"/></svg>
+            <div class="sci">Lingua</div>
+            <div class="com">range &amp; accuracy</div>
+            <div class="stem"><i class="leaf" style="height:23px"></i><i class="leaf" style="height:27px"></i><i class="leaf" style="height:19px"></i><i class="leaf dry" style="height:14px"></i><i class="leaf dry" style="height:12px"></i></div>
+            <div class="tag"><span>errors don't impede</span><b>3/5</b></div>
+          </div>
+        </div>
+
+        <div class="note">
+          <h3>Field note · annotated extract</h3>
+          <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem in the city centre, and they should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
+        </div>
+        <div class="det">
+          <div class="verdict">A healthy specimen. Cultivate the present perfect and hold a formal register to bring the Lingua leaves to full size.</div>
+          <div class="lvl">B2<em>est. level</em></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================== D2 · CONCRETE ============================== -->
-  <section class="draft d2" data-name="Concrete · Brutalist">
+  <!-- ===== D3 · SAMPLER ===== -->
+  <section class="draft d3" data-name="Sampler · Needlework">
     <div class="wrap">
-      <div class="topbar rise">
-        <div class="b">TRAMITENGLISH / WRITING</div>
-        <div>PART 1 — ESSAY</div>
-        <div class="b">178 / 190 W</div>
+      <div class="frame rise">
+        <div class="motto">Practice · Patience · Progress</div>
+        <div class="alpha">A B C D E F G H I J K L M</div>
+        <h1>Cars should be banned<br>from city centres</h1>
+        <div class="task">Part 1 essay · stitched &amp; marked · 178 / 190</div>
+
+        <div class="stitchrows">
+          <div class="srow"><span class="lab">Content</span><span class="cells" data-n="4"></span><span class="val">4/5</span></div>
+          <div class="srow"><span class="lab">Communicative</span><span class="cells" data-n="3"></span><span class="val">3/5</span></div>
+          <div class="srow"><span class="lab">Organisation</span><span class="cells" data-n="4"></span><span class="val">4/5</span></div>
+          <div class="srow"><span class="lab">Language</span><span class="cells" data-n="3"></span><span class="val">3/5</span></div>
+        </div>
+
+        <div class="sep"></div>
+        <div class="mend">
+          <h3>— Mended threads —</h3>
+          <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a problem, and they should be banned because they <del>make</del> <ins>cause</ins> a great deal of pollution.</p>
+        </div>
+        <div class="signed">Worked by the pupil · level<b>B2</b></div>
       </div>
-      <div class="hero rise">
-        <span class="tag">Marked</span>
-        <h1>Cars Banned<br>From City Centres?</h1>
-        <div class="meta">ESSAY · POLLUTION / PUBLIC TRANSPORT / OWN IDEA · CAMBRIDGE B2 FIRST SCALE</div>
+    </div>
+  </section>
+
+  <!-- ===== D4 · SURVEY ===== -->
+  <section class="draft d4" data-name="Survey · Topographic">
+    <div class="wrap">
+      <div class="legend rise"><span>TramitEnglish · Ordnance of Writing · sheet WR-01</span><span class="bench">▲ B.M. B2</span></div>
+      <div class="title rise">
+        <h1>Cars Banned<br>From Centres</h1>
+        <div class="coord">PART 1 · ESSAY<br>178 / 190 w<br>scale 1:B2 First</div>
       </div>
-      <div class="scoregrid rise">
-        <div class="cell">
-          <div class="c-top"><div class="c-lab">Content</div><div class="c-num">4<em>/5</em></div></div>
-          <div class="blocks"><i class="blk f"></i><i class="blk f"></i><i class="blk f"></i><i class="blk f"></i><i class="blk"></i></div>
-          <div class="c-note">Target reader informed. All points covered, one minor irrelevance.</div>
-        </div>
-        <div class="cell">
-          <div class="c-top"><div class="c-lab">Comm. Achievement</div><div class="c-num">3<em>/5</em></div></div>
-          <div class="blocks"><i class="blk f"></i><i class="blk f"></i><i class="blk a"></i><i class="blk"></i><i class="blk"></i></div>
-          <div class="c-note">Conventions used. Register drifts informal in two places.</div>
-        </div>
-        <div class="cell">
-          <div class="c-top"><div class="c-lab">Organisation</div><div class="c-num">4<em>/5</em></div></div>
-          <div class="blocks"><i class="blk f"></i><i class="blk f"></i><i class="blk f"></i><i class="blk f"></i><i class="blk"></i></div>
-          <div class="c-note">Coherent. Variety of linking words and cohesive devices.</div>
-        </div>
-        <div class="cell">
-          <div class="c-top"><div class="c-lab">Language</div><div class="c-num">3<em>/5</em></div></div>
-          <div class="blocks"><i class="blk f"></i><i class="blk f"></i><i class="blk a"></i><i class="blk"></i><i class="blk"></i></div>
-          <div class="c-note">Errors present in complex forms but do not impede meaning.</div>
+      <div class="map rise">
+        <svg class="contours" viewBox="0 0 600 220" preserveAspectRatio="none">
+          <g fill="none" stroke="#b79a6a" stroke-width="1">
+            <path d="M-20,40 C120,10 220,70 340,40 460,12 560,60 640,38"/>
+            <path d="M-20,70 C120,42 230,100 350,72 470,46 560,92 640,70"/>
+            <path d="M-20,104 C130,78 240,134 360,108 480,82 560,128 640,106"/>
+            <path d="M-20,140 C140,116 250,168 370,144 490,120 560,162 640,142"/>
+            <path d="M-20,178 C150,156 260,200 380,180 500,158 560,196 640,180"/>
+          </g>
+        </svg>
+        <div class="readings">
+          <div class="rd"><svg class="ring" viewBox="0 0 38 38"><circle cx="19" cy="19" r="16" fill="none" stroke="#c0ad84" stroke-width="2"/><circle cx="19" cy="19" r="16" fill="none" stroke="#d2552c" stroke-width="3" stroke-dasharray="80.4" stroke-dashoffset="16" transform="rotate(-90 19 19)"/></svg><div class="nm">Content<em>fulfilment of task</em></div><div class="elev">▲ 4/5 · 410 m</div></div>
+          <div class="rd"><svg class="ring" viewBox="0 0 38 38"><circle cx="19" cy="19" r="16" fill="none" stroke="#c0ad84" stroke-width="2"/><circle cx="19" cy="19" r="16" fill="none" stroke="#d2552c" stroke-width="3" stroke-dasharray="60.3" stroke-dashoffset="40.2" transform="rotate(-90 19 19)"/></svg><div class="nm">Comm. Achievement<em>register &amp; conventions</em></div><div class="elev">▲ 3/5 · 305 m</div></div>
+          <div class="rd"><svg class="ring" viewBox="0 0 38 38"><circle cx="19" cy="19" r="16" fill="none" stroke="#c0ad84" stroke-width="2"/><circle cx="19" cy="19" r="16" fill="none" stroke="#d2552c" stroke-width="3" stroke-dasharray="80.4" stroke-dashoffset="16" transform="rotate(-90 19 19)"/></svg><div class="nm">Organisation<em>coherence &amp; linking</em></div><div class="elev">▲ 4/5 · 415 m</div></div>
+          <div class="rd"><svg class="ring" viewBox="0 0 38 38"><circle cx="19" cy="19" r="16" fill="none" stroke="#c0ad84" stroke-width="2"/><circle cx="19" cy="19" r="16" fill="none" stroke="#d2552c" stroke-width="3" stroke-dasharray="60.3" stroke-dashoffset="40.2" transform="rotate(-90 19 19)"/></svg><div class="nm">Language<em>range &amp; accuracy</em></div><div class="elev">▲ 3/5 · 300 m</div></div>
         </div>
       </div>
-      <div class="pen rise">
-        <h3>// Corrections</h3>
+      <div class="fieldnote rise">
+        <h3>Surveyor's field note</h3>
         <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem. They should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
       </div>
-      <div class="foot rise">
-        <p>VERDICT: A strong B2 performance. Fix present-perfect control and lock the register to formal. Next stop — Band 4 on Language.</p>
-        <div class="bigband">B2<em>Estimated level</em></div>
+      <div class="summit rise"><span class="tri"></span><span class="b">B2</span><p>// Estimated summit. Climb the Language contour by steadying verb tenses and holding a formal register.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== D5 · APOTHECARY ===== -->
+  <section class="draft d5" data-name="Apothecary · Prescription">
+    <div class="wrap">
+      <div class="label rise">
+        <div class="label-top"><span>TramitEnglish Dispensary · est. MMXXVI</span><span>No. WR-01</span></div>
+        <div class="label-body">
+          <div class="rx">
+            <div class="glyph">℞</div>
+            <div>
+              <h1>For one essay,<br>on city cars.</h1>
+              <div class="sub">“Cars should be banned from city centres.” · Part 1 · 178 words</div>
+            </div>
+          </div>
+
+          <div class="dosage">
+            <div class="dose"><span class="nm">Content<em>fulfilment of task</em></span><span class="grad"><i style="width:80%"></i></span><span class="amt">4/5</span></div>
+            <div class="dose"><span class="nm">Communicative<em>register &amp; conventions</em></span><span class="grad"><i class="lo" style="width:60%"></i></span><span class="amt">3/5</span></div>
+            <div class="dose"><span class="nm">Organisation<em>coherence &amp; linking</em></span><span class="grad"><i style="width:80%"></i></span><span class="amt">4/5</span></div>
+            <div class="dose"><span class="nm">Language<em>range &amp; accuracy</em></span><span class="grad"><i class="lo" style="width:60%"></i></span><span class="amt">3/5</span></div>
+          </div>
+
+          <div class="sig">
+            <h3>Signa · directions for use</h3>
+            <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem, and they should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
+          </div>
+
+          <div class="seal">
+            <div class="wax">B2</div>
+            <p><b>Take twice daily:</b> one dose of present-perfect drill and one of formal register. Refill until the Language measure reads full.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================== D3 · ATELIER ============================== -->
-  <section class="draft d3" data-name="Atelier · Organic studio">
+  <!-- ===== D6 · ALMANAC ===== -->
+  <section class="draft d6" data-name="Almanac · Night almanac">
     <div class="wrap">
-      <div class="top rise"><span class="seed"></span> Writing studio · Part 1 essay</div>
-      <h1 class="rise">Your essay, gently graded.</h1>
-      <p class="sub rise">“Cars should be banned from city centres.” Marked across the four Cambridge scales — here's where it grows, and where to prune.</p>
+      <div class="masth rise">
+        <div class="est">The Writer's Almanac · being a true account</div>
+        <h1>Essay Almanac</h1>
+        <div class="date">Part the First · an essay upon the banishing of cars</div>
+        <svg class="sun" viewBox="0 0 46 46"><circle cx="23" cy="23" r="9" fill="none" stroke="#d9a441" stroke-width="1.5"/><g stroke="#d9a441" stroke-width="1.5"><line x1="23" y1="2" x2="23" y2="9"/><line x1="23" y1="37" x2="23" y2="44"/><line x1="2" y1="23" x2="9" y2="23"/><line x1="37" y1="23" x2="44" y2="23"/><line x1="8" y1="8" x2="13" y2="13"/><line x1="33" y1="33" x2="38" y2="38"/><line x1="38" y1="8" x2="33" y2="13"/><line x1="13" y1="33" x2="8" y2="38"/></g></svg>
+      </div>
 
-      <div class="card rise">
-        <div class="rowlab">The four scales</div>
-        <div class="srow">
-          <span class="diamond"></span>
-          <div class="s-meta">
-            <div class="s-name">Content <b>4<em> /5</em></b></div>
-            <div class="track"><div class="fill" style="width:80%"></div></div>
-          </div>
+      <div class="twocol rise">
+        <div class="col">
+          <div class="colh">Readings of the page</div>
+          <div class="phase"><span class="moon"><i style="width:80%"></i></span><span class="pn">Content</span><span class="pv">4/5</span></div>
+          <div class="phase"><span class="moon"><i style="width:60%"></i></span><span class="pn">Communicative</span><span class="pv">3/5</span></div>
+          <div class="phase"><span class="moon"><i style="width:80%"></i></span><span class="pn">Organisation</span><span class="pv">4/5</span></div>
+          <div class="phase"><span class="moon"><i style="width:60%"></i></span><span class="pn">Language</span><span class="pv">3/5</span></div>
         </div>
-        <div class="srow warn">
-          <span class="diamond"></span>
-          <div class="s-meta">
-            <div class="s-name">Communicative Achievement <b>3<em> /5</em></b></div>
-            <div class="track"><div class="fill warn" style="width:60%"></div></div>
-          </div>
-        </div>
-        <div class="srow">
-          <span class="diamond"></span>
-          <div class="s-meta">
-            <div class="s-name">Organisation <b>4<em> /5</em></b></div>
-            <div class="track"><div class="fill" style="width:80%"></div></div>
-          </div>
-        </div>
-        <div class="srow warn">
-          <span class="diamond"></span>
-          <div class="s-meta">
-            <div class="s-name">Language <b>3<em> /5</em></b></div>
-            <div class="track"><div class="fill warn" style="width:60%"></div></div>
-          </div>
+        <div class="col">
+          <div class="colh">Aspect &amp; forecast</div>
+          <p style="font-family:'Bitter',serif;font-size:14px;line-height:1.7;color:#cdbb8c">Fair prospects with passing clouds over the verbs. The conjunctions hold steady; expect brighter skies once the register settles into one season.</p>
         </div>
       </div>
 
-      <div class="pen rise">
-        <h3>Where the red pen landed</h3>
-        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem in the city centre, and they should be banned because they <del>make</del> <ins>cause</ins> a lot of pollution.</p>
+      <div class="reading rise">
+        <h3>This day's correction</h3>
+        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem, and they should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
       </div>
 
-      <div class="tips rise">
-        <div class="tip"><span class="dot"></span>Keep one formal register from first line to last — no slipping into chat.</div>
-        <div class="tip"><span class="dot"></span>Rehearse the present perfect: “have become”, “has risen”, “have increased”.</div>
-        <div class="tip"><span class="dot"></span>Close with a sentence that ties pollution, transport and your idea together.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== D4 · TERMINAL 86 ============================== -->
-  <section class="draft d4" data-name="Terminal 86 · Retro-futurist">
-    <div class="wrap">
-      <div class="bar rise"><span>TRAMITENGLISH · WRITING.SYS</span><span class="amber">● MARKED</span></div>
-      <h1 class="rise">ESSAY_REPORT.LOG</h1>
-      <p class="prompt rise">&gt; TASK: <span class="c">“Cars should be banned from city centres.”</span> Do you agree?<br>&gt; FORMAT: Part 1 essay · 178/190 words · scale: Cambridge B2 First</p>
-
-      <div class="ledger rise">
-        <div class="lrow">
-          <div class="l-key">CONT</div>
-          <div class="l-name">Content</div>
-          <div class="asciibar">████<span class="o">█</span></div>
-          <div class="l-num">4</div>
-        </div>
-        <div class="lrow">
-          <div class="l-key">COMM</div>
-          <div class="l-name">Communicative Achievement</div>
-          <div class="asciibar">███<span class="o">██</span></div>
-          <div class="l-num">3</div>
-        </div>
-        <div class="lrow">
-          <div class="l-key">ORG</div>
-          <div class="l-name">Organisation</div>
-          <div class="asciibar">████<span class="o">█</span></div>
-          <div class="l-num">4</div>
-        </div>
-        <div class="lrow">
-          <div class="l-key">LANG</div>
-          <div class="l-name">Language</div>
-          <div class="asciibar">███<span class="o">██</span></div>
-          <div class="l-num">3</div>
-        </div>
-      </div>
-
-      <div class="pen rise">
-        <h3>&gt; PATCH SUGGESTIONS</h3>
-        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem. They should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
-      </div>
-
-      <div class="out rise">
-        <div class="band">B2<em>EST. LEVEL</em></div>
-        <p>&gt; A strong run. Recompile verb tenses and hold the formal register — Language jumps to band 4.<span class="cursor"></span></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== D5 · DOSSIER ============================== -->
-  <section class="draft d5" data-name="Dossier · Dense report">
-    <div class="wrap">
-      <div class="head rise">
-        <div>
-          <div class="id">Assessment record · WR-01</div>
-          <h1>Writing Evaluation</h1>
-        </div>
-        <div class="ref">Cambridge B2 First · Scale v.2016</div>
-      </div>
-      <div class="meta-strip rise">
-        <div class="ms"><div class="k">Task</div><div class="v">Part 1 <em>Essay</em></div></div>
-        <div class="ms"><div class="k">Words</div><div class="v">178 <em>/190</em></div></div>
-        <div class="ms"><div class="k">Aggregate</div><div class="v">14 <em>/20</em></div></div>
-        <div class="ms"><div class="k">Level</div><div class="v">B2</div></div>
-      </div>
-
-      <div class="secthead rise">Subscale breakdown</div>
-      <table class="rise">
-        <tr>
-          <td class="idx">01</td>
-          <td class="nm">Content<div class="micro"><span class="hbar"><i style="width:80%"></i></span><span class="sc">4/5</span></div></td>
-          <td class="note">All content relevant; target reader fully informed. One minor omission in paragraph two.</td>
-        </tr>
-        <tr>
-          <td class="idx">02</td>
-          <td class="nm">Communicative Achievement<div class="micro"><span class="hbar"><i class="lo" style="width:60%"></i></span><span class="sc">3/5</span></div></td>
-          <td class="note">Conventions of the essay used to communicate straightforward ideas; register inconsistent.</td>
-        </tr>
-        <tr>
-          <td class="idx">03</td>
-          <td class="nm">Organisation<div class="micro"><span class="hbar"><i style="width:80%"></i></span><span class="sc">4/5</span></div></td>
-          <td class="note">Generally well organised and coherent; variety of linking words and cohesive devices.</td>
-        </tr>
-        <tr>
-          <td class="idx">04</td>
-          <td class="nm">Language<div class="micro"><span class="hbar"><i class="lo" style="width:60%"></i></span><span class="sc">3/5</span></div></td>
-          <td class="note">Range of everyday vocabulary; simple and some complex forms, errors do not impede.</td>
-        </tr>
-      </table>
-
-      <div class="secthead rise">Annotated corrections</div>
-      <div class="pen rise">
-        <h3>Extract · lines 1–2</h3>
-        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem in the city centre. In my opinion they should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
-      </div>
-
-      <div class="summary rise">
-        <div class="q">14<em>/20</em></div>
-        <p>Examiner note: a competent B2 script. Priority actions — stabilise the present perfect and maintain a formal register throughout to lift the Language subscale.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== D6 · OVERPRINT ============================== -->
-  <section class="draft d6" data-name="Overprint · Risograph poster">
-    <span class="blob b1"></span>
-    <span class="blob b2"></span>
-    <div class="wrap">
-      <div class="ey rise"><span class="sq"></span> Writing · Part 1 · Essay · Marked</div>
-      <h1 class="rise">Ban the<br><span class="ink">Cars?</span></h1>
-      <p class="pr rise">“Cars should be banned from city centres.” Your essay, graded on the four Cambridge B2 First scales.</p>
-
-      <div class="scores rise">
-        <div class="sc"><span class="mk"></span><div class="n">4<em>/5</em></div><div class="lab">Content</div></div>
-        <div class="sc hot"><span class="mk"></span><div class="n">3<em>/5</em></div><div class="lab">Comm. Achievement</div></div>
-        <div class="sc"><span class="mk"></span><div class="n">4<em>/5</em></div><div class="lab">Organisation</div></div>
-        <div class="sc hot"><span class="mk"></span><div class="n">3<em>/5</em></div><div class="lab">Language</div></div>
-      </div>
-
-      <div class="pen rise">
-        <h3>Red pen</h3>
-        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem, and they should be banned because they <del>make</del> <ins>cause</ins> a great deal of pollution.</p>
-      </div>
-
-      <div class="verdict rise">
-        <div class="big">B2</div>
-        <p>A persuasive, well-built essay. Steady the verb tenses and keep it formal end-to-end — Band 4 is one revision away.</p>
-      </div>
+      <div class="prog rise"><span class="lvl">B2</span><p>The pupil waxes toward the next quarter. Steady the tenses and keep one register, and the Language moon shall come to full.</p></div>
     </div>
   </section>
 
 </div>
 
-<div class="sw-hint">← → arrows · swipe · click dots</div>
+<div class="sw-hint">← → arrows · swipe · tap dots</div>
 <nav class="switcher">
   <button class="sw-btn" id="prev" aria-label="Previous">‹</button>
-  <div class="sw-name"><span id="idx">01</span>/06 · <b id="nm">Inkpress · Editorial</b></div>
+  <div class="sw-name"><span id="idx">01</span>/06 · <b id="nm">Scriptorium · Manuscript</b></div>
   <div class="sw-dots" id="dots"></div>
   <button class="sw-btn" id="next" aria-label="Next">›</button>
 </nav>
 
 <script>
 (function(){
-  var drafts = Array.prototype.slice.call(document.querySelectorAll('.draft'));
-  var cur = 0;
-  var dotsWrap = document.getElementById('dots');
-  var idxEl = document.getElementById('idx');
-  var nmEl = document.getElementById('nm');
+  document.querySelectorAll('.d3 .cells').forEach(function(c){
+    var n = parseInt(c.getAttribute('data-n'),10);
+    for(var i=0;i<5;i++){
+      var on = i<n;
+      c.insertAdjacentHTML('beforeend',
+        '<svg class="x" viewBox="0 0 20 20">'+
+        '<line x1="3" y1="3" x2="17" y2="17" stroke="'+(on?'#b23a48':'#cabd9c')+'" stroke-width="'+(on?3:2)+'" stroke-linecap="round"/>'+
+        '<line x1="17" y1="3" x2="3" y2="17" stroke="'+(on?'#b23a48':'#cabd9c')+'" stroke-width="'+(on?3:2)+'" stroke-linecap="round"/>'+
+        '</svg>');
+    }
+  });
 
+  var drafts = Array.prototype.slice.call(document.querySelectorAll('.draft'));
+  var cur = 0, dotsWrap = document.getElementById('dots');
+  var idxEl = document.getElementById('idx'), nmEl = document.getElementById('nm');
   drafts.forEach(function(d,i){
     var dot = document.createElement('span');
-    dot.className = 'sw-dot' + (i===0?' on':'');
-    dot.addEventListener('click', function(){ go(i); });
+    dot.className='sw-dot'+(i===0?' on':'');
+    dot.addEventListener('click',function(){go(i);});
     dotsWrap.appendChild(dot);
   });
   var dots = Array.prototype.slice.call(dotsWrap.children);
-
   function go(n){
-    n = (n + drafts.length) % drafts.length;
-    drafts[cur].classList.remove('active');
-    dots[cur].classList.remove('on');
-    cur = n;
-    drafts[cur].classList.add('active');
-    drafts[cur].scrollTop = 0;
-    dots[cur].classList.add('on');
-    idxEl.textContent = ('0'+(cur+1)).slice(-2);
-    nmEl.textContent = drafts[cur].getAttribute('data-name');
+    n=(n+drafts.length)%drafts.length;
+    drafts[cur].classList.remove('active'); dots[cur].classList.remove('on');
+    cur=n;
+    drafts[cur].classList.add('active'); drafts[cur].scrollTop=0; dots[cur].classList.add('on');
+    idxEl.textContent=('0'+(cur+1)).slice(-2);
+    nmEl.textContent=drafts[cur].getAttribute('data-name');
   }
-
-  document.getElementById('prev').addEventListener('click', function(){ go(cur-1); });
-  document.getElementById('next').addEventListener('click', function(){ go(cur+1); });
-  document.addEventListener('keydown', function(e){
-    if(e.key==='ArrowLeft') go(cur-1);
-    if(e.key==='ArrowRight') go(cur+1);
-  });
-
-  // swipe
+  document.getElementById('prev').addEventListener('click',function(){go(cur-1);});
+  document.getElementById('next').addEventListener('click',function(){go(cur+1);});
+  document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(cur-1);if(e.key==='ArrowRight')go(cur+1);});
   var x0=null;
-  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
-  document.addEventListener('touchend', function(e){
-    if(x0===null) return;
-    var dx = e.changedTouches[0].clientX - x0;
-    if(Math.abs(dx) > 60){ go(dx<0 ? cur+1 : cur-1); }
-    x0=null;
-  }, {passive:true});
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>60)go(dx<0?cur+1:cur-1);x0=null;},{passive:true});
 })();
 </script>
 </body>
