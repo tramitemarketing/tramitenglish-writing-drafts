@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TramitEnglish — Writing · 6 design drafts</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Bricolage+Grotesque:wght@400;500;700;800&family=Syne:wght@600;700;800&family=Chivo:wght@400;700;900&family=Chivo+Mono:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Fontshare -->
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&f[]=cabinet-grotesk@400,700,800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================= GLOBAL / META SHELL */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#0c0a09;color:#fff;font-family:'Spline Sans',sans-serif;overflow:hidden}
+#stage{position:relative;height:100vh;width:100vw}
+.draft{position:absolute;inset:0;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.draft.active{opacity:1;pointer-events:auto}
+.draft::-webkit-scrollbar{width:0}
+.wrap{max-width:760px;margin:0 auto;min-height:100vh}
+
+/* geometric symbol helpers reused conceptually; each draft styles its own */
+svg{display:block}
+
+/* ---- meta switcher (utility chrome, deliberately neutral) ---- */
+.switcher{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
+  z-index:100;display:flex;align-items:center;gap:14px;
+  background:#1a1714;border:1px solid #2e2a25;border-radius:100px;
+  padding:8px 10px 8px 16px;box-shadow:0 10px 40px rgba(0,0,0,.5);
+  font-family:'Chivo Mono',monospace;
+}
+.sw-name{font-size:11px;letter-spacing:.08em;color:#cdbfa8;text-transform:uppercase;min-width:188px;white-space:nowrap}
+.sw-name b{color:#fff;font-weight:700}
+.sw-btn{width:30px;height:30px;border-radius:50%;border:1px solid #3a352e;background:#0f0d0b;color:#e8dcc6;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+.sw-btn:hover{background:#241f1a;border-color:#5a5147}
+.sw-dots{display:flex;gap:7px;padding:0 4px}
+.sw-dot{width:7px;height:7px;border-radius:50%;background:#3a352e;cursor:pointer;transition:.2s}
+.sw-dot.on{background:#f0b429;transform:scale(1.25)}
+.sw-hint{position:fixed;left:50%;bottom:62px;transform:translateX(-50%);z-index:100;
+  font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.12em;color:#5a5147;text-transform:uppercase}
+
+/* small entrance for content when a draft becomes active */
+.draft.active .rise{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.draft.active .rise:nth-child(2){animation-delay:.04s}
+.draft.active .rise:nth-child(3){animation-delay:.08s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ============================================================= D1 · INKPRESS (editorial press) */
+.d1{background:#f1e8d8;color:#211b14;
+  background-image:radial-gradient(#ddcfb6 .8px,transparent .8px);background-size:22px 22px}
+.d1 .wrap{padding:46px 32px 120px;position:relative}
+.d1 .masthead{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:2px solid #211b14;padding-bottom:10px}
+.d1 .mast-l{font-family:'Fraunces',serif;font-weight:900;font-size:13px;letter-spacing:.02em}
+.d1 .mast-r{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.d1 .kicker{font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+  color:#7b2233;margin:30px 0 6px}
+.d1 h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(34px,7vw,58px);line-height:.96;
+  letter-spacing:-.02em;max-width:11ch}
+.d1 .lede{font-family:'Newsreader',serif;font-size:16px;line-height:1.55;max-width:46ch;margin-top:16px;color:#3a3026}
+.d1 .lede .drop{float:left;font-family:'Fraunces',serif;font-weight:900;font-size:62px;line-height:.7;
+  padding:6px 10px 0 0;color:#7b2233}
+.d1 .rule{height:1px;background:#211b14;opacity:.35;margin:34px 0}
+.d1 .grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.d1 .score{padding:18px 20px 18px 0;border-top:1px solid #211b14}
+.d1 .score:nth-child(even){padding-left:20px;border-left:1px solid #211b14}
+.d1 .s-lab{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6b5d4a}
+.d1 .s-num{font-family:'Fraunces',serif;font-weight:900;font-size:46px;line-height:1;margin:4px 0 2px;display:flex;align-items:baseline;gap:4px}
+.d1 .s-num span{font-size:18px;color:#9c8a6f;font-weight:500}
+.d1 .pips{display:flex;gap:5px;margin:8px 0 10px}
+.d1 .pip{width:9px;height:9px;border-radius:50%;border:1.4px solid #211b14}
+.d1 .pip.f{background:#7b2233;border-color:#7b2233}
+.d1 .s-note{font-family:'Newsreader',serif;font-size:13.5px;line-height:1.5;color:#48402f}
+.d1 .pen{margin-top:34px;border:1px solid #211b14;background:#f7f0e3;padding:20px 22px}
+.d1 .pen h3{font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7b2233;margin-bottom:12px}
+.d1 .pen p{font-family:'Newsreader',serif;font-size:18px;line-height:1.85;color:#211b14}
+.d1 .pen del{color:#9c8a6f;text-decoration:line-through;text-decoration-color:#b9485e}
+.d1 .pen ins{color:#7b2233;text-decoration:none;font-style:italic;border-bottom:1.5px solid #7b2233}
+.d1 .verdict{margin-top:30px;display:flex;gap:18px;align-items:flex-start}
+.d1 .verdict .q{font-family:'Fraunces',serif;font-weight:900;font-size:54px;color:#7b2233;line-height:.7}
+.d1 .verdict p{font-family:'Newsreader',serif;font-size:17px;line-height:1.55;color:#3a3026;max-width:48ch}
+.d1 .sigline{margin-top:18px;font-family:'Chivo Mono',monospace;font-size:11px;letter-spacing:.1em;color:#6b5d4a}
+
+/* ============================================================= D2 · CONCRETE (brutalist) */
+.d2{background:#e6e2d6;color:#11100d;font-family:'Chivo Mono',monospace}
+.d2 .wrap{padding:0 0 120px;max-width:820px}
+.d2 .topbar{display:flex;justify-content:space-between;align-items:stretch;border-bottom:3px solid #11100d}
+.d2 .topbar div{padding:16px 18px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.d2 .topbar .b{background:#11100d;color:#e6e2d6}
+.d2 .hero{border-bottom:3px solid #11100d;padding:24px 18px 26px;position:relative}
+.d2 .tag{display:inline-block;background:#e8431f;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:4px 9px;margin-bottom:14px}
+.d2 .hero h1{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(30px,7vw,56px);
+  line-height:.95;text-transform:uppercase;letter-spacing:-.01em}
+.d2 .hero .meta{margin-top:14px;font-size:12px;letter-spacing:.04em;color:#3a382f}
+.d2 .scoregrid{display:grid;grid-template-columns:1fr 1fr}
+.d2 .cell{border-bottom:3px solid #11100d;border-right:3px solid #11100d;padding:18px}
+.d2 .cell:nth-child(even){border-right:none}
+.d2 .c-top{display:flex;justify-content:space-between;align-items:flex-start}
+.d2 .c-lab{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;max-width:16ch}
+.d2 .c-num{font-family:'Clash Display',sans-serif;font-weight:700;font-size:40px;line-height:.8}
+.d2 .c-num em{font-size:15px;color:#8a8474;font-style:normal}
+.d2 .blocks{display:flex;gap:4px;margin:14px 0 10px}
+.d2 .blk{flex:1;height:16px;border:2px solid #11100d}
+.d2 .blk.f{background:#11100d}
+.d2 .blk.a{background:#e8431f;border-color:#e8431f}
+.d2 .c-note{font-size:12px;line-height:1.55;color:#33312a}
+.d2 .pen{padding:22px 18px;border-bottom:3px solid #11100d}
+.d2 .pen h3{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.d2 .pen p{font-size:16px;line-height:2;font-family:'Chivo Mono',monospace}
+.d2 .pen del{background:#11100d;color:#e6e2d6;text-decoration:none;padding:0 3px}
+.d2 .pen ins{background:#e8431f;color:#fff;text-decoration:none;padding:0 3px}
+.d2 .foot{padding:22px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.d2 .foot p{font-size:13px;line-height:1.6;max-width:46ch}
+.d2 .bigband{font-family:'Clash Display',sans-serif;font-weight:700;font-size:64px;line-height:.8;text-align:right}
+.d2 .bigband em{display:block;font-size:11px;letter-spacing:.14em;font-style:normal;color:#8a8474;text-transform:uppercase}
+
+/* ============================================================= D3 · ATELIER (organic studio) */
+.d3{background:#e4e8dd;color:#23291f}
+.d3 .wrap{padding:48px 30px 120px}
+.d3 .top{display:flex;align-items:center;gap:12px;font-family:'Bricolage Grotesque',sans-serif;
+  font-size:12px;letter-spacing:.04em;color:#5b6650;text-transform:uppercase;font-weight:600}
+.d3 .seed{width:14px;height:14px;background:#c2603f;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}
+.d3 h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(32px,6.5vw,52px);
+  line-height:1.02;letter-spacing:-.02em;margin:26px 0 8px;max-width:15ch}
+.d3 .sub{font-family:'Bricolage Grotesque',sans-serif;font-size:15px;color:#4d573f;max-width:50ch;line-height:1.55}
+.d3 .card{background:#eef1e8;border-radius:22px;padding:26px;margin-top:30px;border:1px solid #d3dac8}
+.d3 .rowlab{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:13px;letter-spacing:.02em;
+  text-transform:uppercase;color:#5b6650;margin-bottom:18px}
+.d3 .srow{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.d3 .srow:last-child{margin-bottom:0}
+.d3 .diamond{width:11px;height:11px;background:#2f4a37;transform:rotate(45deg);flex-shrink:0}
+.d3 .srow.warn .diamond{background:#c2603f}
+.d3 .s-meta{flex:1;min-width:0}
+.d3 .s-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;display:flex;justify-content:space-between}
+.d3 .s-name b{font-weight:800}
+.d3 .s-name b em{font-style:normal;color:#9aa78c;font-weight:600;font-size:12px}
+.d3 .track{height:9px;background:#dde3d3;border-radius:20px;margin-top:8px;overflow:hidden}
+.d3 .fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#3a5c44,#2f4a37)}
+.d3 .fill.warn{background:linear-gradient(90deg,#d4754f,#c2603f)}
+.d3 .pen{background:#23291f;color:#e4e8dd;border-radius:22px;padding:26px;margin-top:22px}
+.d3 .pen h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:#a9b89d;margin-bottom:14px}
+.d3 .pen p{font-size:17px;line-height:1.95;font-family:'Bricolage Grotesque',sans-serif}
+.d3 .pen del{color:#8d9a82;text-decoration:line-through}
+.d3 .pen ins{color:#e8a87f;text-decoration:none;font-weight:600}
+.d3 .tips{margin-top:22px;display:flex;flex-direction:column;gap:12px}
+.d3 .tip{display:flex;gap:13px;align-items:flex-start;font-family:'Bricolage Grotesque',sans-serif;
+  font-size:14.5px;line-height:1.5;color:#3a4332}
+.d3 .tip .dot{width:7px;height:7px;border-radius:50%;background:#c2603f;margin-top:7px;flex-shrink:0}
+
+/* ============================================================= D4 · TERMINAL 86 (retro-futurist) */
+.d4{background:#14100b;color:#f3e4c8;font-family:'Chivo Mono',monospace;
+  background-image:repeating-linear-gradient(0deg,rgba(255,176,0,.035) 0 1px,transparent 1px 3px)}
+.d4 .wrap{padding:42px 26px 120px}
+.d4 .bar{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;
+  color:#8a6b34;border-bottom:1px dashed #4a3a1c;padding-bottom:10px}
+.d4 .bar .amber{color:#ffb000}
+.d4 h1{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,6vw,48px);
+  line-height:1;letter-spacing:.01em;margin:28px 0 6px;color:#ffd27a;text-shadow:0 0 22px rgba(255,176,0,.25)}
+.d4 .prompt{font-size:13px;line-height:1.7;color:#cdb585;max-width:54ch}
+.d4 .prompt .c{color:#ffb000}
+.d4 .ledger{margin-top:30px;border:1px solid #4a3a1c}
+.d4 .lrow{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #2a2010}
+.d4 .lrow:last-child{border-bottom:none}
+.d4 .l-key{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#a98c52;width:8ch;flex-shrink:0}
+.d4 .l-name{flex:1;font-size:13.5px;color:#f3e4c8;min-width:0}
+.d4 .asciibar{font-size:15px;letter-spacing:2px;color:#ffb000;white-space:nowrap}
+.d4 .asciibar .o{color:#4a3a1c}
+.d4 .l-num{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:22px;color:#ffd27a;width:3ch;text-align:right}
+.d4 .pen{margin-top:28px;border:1px solid #4a3a1c;padding:18px 16px}
+.d4 .pen h3{font-size:11px;letter-spacing:.16em;color:#ffb000;margin-bottom:12px}
+.d4 .pen p{font-size:14px;line-height:2;color:#cdb585}
+.d4 .pen del{color:#7a5f2e;text-decoration:line-through}
+.d4 .pen ins{color:#ffb000;text-decoration:none}
+.d4 .pen ins::before{content:"▸ "}
+.d4 .out{margin-top:26px;display:flex;gap:18px;align-items:flex-start;border-top:1px dashed #4a3a1c;padding-top:22px}
+.d4 .out .band{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:50px;color:#ffb000;line-height:.8}
+.d4 .out .band em{display:block;font-size:10px;letter-spacing:.16em;font-style:normal;color:#8a6b34;margin-top:8px}
+.d4 .out p{font-size:13px;line-height:1.7;color:#cdb585;max-width:46ch}
+.d4 .cursor{display:inline-block;width:9px;height:15px;background:#ffb000;margin-left:2px;animation:blink 1s steps(1) infinite;vertical-align:-2px}
+@keyframes blink{50%{opacity:0}}
+
+/* ============================================================= D5 · DOSSIER (dense report) */
+.d5{background:#f1f0ea;color:#16181a;font-family:'Chivo',sans-serif}
+.d5 .wrap{padding:40px 32px 120px;max-width:800px}
+.d5 .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #16181a;padding-bottom:12px}
+.d5 .head .id{font-family:'Chivo',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6b6e6a}
+.d5 .head h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(26px,5vw,40px);line-height:1;letter-spacing:-.01em}
+.d5 .head .ref{font-family:'Chivo',sans-serif;font-size:10px;letter-spacing:.1em;color:#b8860b;text-transform:uppercase}
+.d5 .meta-strip{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #c9c8c0}
+.d5 .ms{padding:12px 14px 12px 0;border-right:1px solid #c9c8c0}
+.d5 .ms:last-child{border-right:none;padding-right:0}
+.d5 .ms .k{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8a8d88}
+.d5 .ms .v{font-family:'Fraunces',serif;font-weight:600;font-size:19px;margin-top:3px}
+.d5 .ms .v em{font-size:11px;color:#b8860b;font-style:normal}
+.d5 table{width:100%;border-collapse:collapse;margin-top:8px}
+.d5 .secthead{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#16181a;font-weight:700;
+  padding:20px 0 8px;border-bottom:1px solid #16181a}
+.d5 td{padding:13px 8px;border-bottom:1px solid #d6d5cd;vertical-align:top;font-size:13px;line-height:1.5}
+.d5 td.idx{width:26px;font-family:'Chivo Mono',monospace;font-size:11px;color:#b8860b}
+.d5 td.nm{width:30%;font-weight:700;font-size:13px}
+.d5 td .micro{display:flex;align-items:center;gap:8px;margin-top:6px}
+.d5 td .hbar{height:5px;width:90px;background:#dcdbd3;position:relative}
+.d5 td .hbar i{position:absolute;left:0;top:0;bottom:0;background:#16181a}
+.d5 td .hbar i.lo{background:#b8860b}
+.d5 td .sc{font-family:'Chivo Mono',monospace;font-size:11px;color:#6b6e6a}
+.d5 td.note{color:#3c3f3a}
+.d5 .pen{margin-top:8px;border:1px solid #16181a;padding:16px 18px;background:#f7f6f1}
+.d5 .pen h3{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#b8860b;margin-bottom:10px}
+.d5 .pen p{font-family:'Newsreader',serif;font-size:16px;line-height:1.9}
+.d5 .pen del{color:#9a9990;text-decoration:line-through}
+.d5 .pen ins{color:#16181a;text-decoration:none;background:#f3e3b8;padding:0 2px;font-weight:500}
+.d5 .summary{display:flex;gap:16px;margin-top:18px;align-items:flex-start}
+.d5 .summary .q{font-family:'Fraunces',serif;font-weight:900;font-size:44px;line-height:.8}
+.d5 .summary .q em{font-size:14px;color:#8a8d88;font-style:normal}
+.d5 .summary p{font-size:13px;line-height:1.6;color:#3c3f3a;max-width:50ch}
+
+/* ============================================================= D6 · OVERPRINT (risograph poster) */
+.d6{background:#b5431f;color:#f6e9d8;font-family:'General Sans',sans-serif;position:relative;overflow:hidden}
+.d6 .blob{position:absolute;border-radius:50%;mix-blend-mode:multiply;pointer-events:none}
+.d6 .b1{width:340px;height:340px;background:#143025;top:-90px;right:-70px}
+.d6 .b2{width:240px;height:240px;background:#ff7a5c;bottom:60px;left:-90px;mix-blend-mode:screen;opacity:.55}
+.d6 .wrap{padding:46px 30px 130px;position:relative;z-index:2}
+.d6 .ey{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#f4cdbb}
+.d6 .sq{width:12px;height:12px;border:2px solid #f6e9d8;transform:rotate(45deg)}
+.d6 h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(40px,11vw,92px);line-height:.86;
+  letter-spacing:-.03em;margin:18px 0 10px;text-transform:uppercase}
+.d6 h1 .ink{color:#143025}
+.d6 .pr{font-size:15px;line-height:1.5;max-width:42ch;color:#f4d9c8}
+.d6 .scores{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:34px;background:#f6e9d8}
+.d6 .sc{background:#b5431f;padding:20px 18px;position:relative}
+.d6 .sc .n{font-family:'Syne',sans-serif;font-weight:800;font-size:58px;line-height:.8;color:#f6e9d8}
+.d6 .sc .n em{font-size:18px;color:#f4a98c;font-style:normal}
+.d6 .sc.hot .n{color:#143025}
+.d6 .sc .lab{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:10px;color:#f4d9c8}
+.d6 .sc .mk{position:absolute;top:18px;right:18px;width:12px;height:12px;background:#143025;transform:rotate(45deg)}
+.d6 .sc.hot .mk{background:#ff7a5c}
+.d6 .pen{margin-top:26px;background:#143025;padding:24px;border-radius:2px}
+.d6 .pen h3{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#9fc4a8;margin-bottom:14px}
+.d6 .pen p{font-size:17px;line-height:1.9;color:#e8efe2}
+.d6 .pen del{color:#7d9685;text-decoration:line-through}
+.d6 .pen ins{color:#ff9c7d;text-decoration:none;font-weight:600}
+.d6 .verdict{margin-top:26px;display:flex;align-items:flex-start;gap:18px}
+.d6 .verdict .big{font-family:'Syne',sans-serif;font-weight:800;font-size:74px;line-height:.78;color:#143025}
+.d6 .verdict p{font-size:15px;line-height:1.5;color:#f4d9c8;max-width:42ch;font-weight:500}
+
+@media(max-width:560px){
+  .d1 .grid,.d2 .scoregrid,.d5 .meta-strip,.d6 .scores{grid-template-columns:1fr}
+  .d2 .cell:nth-child(even){border-right:none}
+  .d5 .ms{border-right:none}
+  .sw-name{min-width:120px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- ============================== D1 · INKPRESS ============================== -->
+  <section class="draft d1 active" data-name="Inkpress · Editorial">
+    <div class="wrap">
+      <div class="masthead rise">
+        <div class="mast-l">THE TRAMIT REVIEW</div>
+        <div class="mast-r">Writing · Part 1 · Essay</div>
+      </div>
+      <div class="kicker rise">Examiner's Marking</div>
+      <h1 class="rise">A clear case, a few cracks.</h1>
+      <p class="lede rise"><span class="drop">“</span>Cars should be banned from city centres.” Do you agree? — an essay on pollution, public transport and your own idea, assessed against the Cambridge B2 First scale.</p>
+      <div class="rule rise"></div>
+      <div class="grid rise">
+        <div class="score">
+          <div class="s-lab">Content</div>
+          <div class="s-num">4<span>/5</span></div>
+          <div class="pips"><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip"></i></div>
+          <div class="s-note">All three points addressed; the reader is informed, with a minor digression in paragraph two.</div>
+        </div>
+        <div class="score">
+          <div class="s-lab">Communicative Achievement</div>
+          <div class="s-num">3<span>/5</span></div>
+          <div class="pips"><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip"></i><i class="pip"></i></div>
+          <div class="s-note">Essay conventions held; tone occasionally slips toward the conversational.</div>
+        </div>
+        <div class="score">
+          <div class="s-lab">Organisation</div>
+          <div class="s-num">4<span>/5</span></div>
+          <div class="pips"><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip"></i></div>
+          <div class="s-note">Logical flow, varied linkers; the conclusion could bind the threads more tightly.</div>
+        </div>
+        <div class="score">
+          <div class="s-lab">Language</div>
+          <div class="s-num">3<span>/5</span></div>
+          <div class="pips"><i class="pip f"></i><i class="pip f"></i><i class="pip f"></i><i class="pip"></i><i class="pip"></i></div>
+          <div class="s-note">Good everyday range; complex tenses attempted but not always controlled.</div>
+        </div>
+      </div>
+      <div class="pen rise">
+        <h3>In the margin — red pen</h3>
+        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem in the city centre. In my opinion, they should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
+      </div>
+      <div class="verdict rise">
+        <div class="q">B2</div>
+        <p>A solid, persuasive script that earns its band. Tighten verb control and hold a consistent formal register, and the next draft reaches into Band 4 territory throughout.<br><span class="sigline">— Marked against Cambridge English Writing Assessment Scale · 178 words</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== D2 · CONCRETE ============================== -->
+  <section class="draft d2" data-name="Concrete · Brutalist">
+    <div class="wrap">
+      <div class="topbar rise">
+        <div class="b">TRAMITENGLISH / WRITING</div>
+        <div>PART 1 — ESSAY</div>
+        <div class="b">178 / 190 W</div>
+      </div>
+      <div class="hero rise">
+        <span class="tag">Marked</span>
+        <h1>Cars Banned<br>From City Centres?</h1>
+        <div class="meta">ESSAY · POLLUTION / PUBLIC TRANSPORT / OWN IDEA · CAMBRIDGE B2 FIRST SCALE</div>
+      </div>
+      <div class="scoregrid rise">
+        <div class="cell">
+          <div class="c-top"><div class="c-lab">Content</div><div class="c-num">4<em>/5</em></div></div>
+          <div class="blocks"><i class="blk f"></i><i class="blk f"></i><i class="blk f"></i><i class="blk f"></i><i class="blk"></i></div>
+          <div class="c-note">Target reader informed. All points covered, one minor irrelevance.</div>
+        </div>
+        <div class="cell">
+          <div class="c-top"><div class="c-lab">Comm. Achievement</div><div class="c-num">3<em>/5</em></div></div>
+          <div class="blocks"><i class="blk f"></i><i class="blk f"></i><i class="blk a"></i><i class="blk"></i><i class="blk"></i></div>
+          <div class="c-note">Conventions used. Register drifts informal in two places.</div>
+        </div>
+        <div class="cell">
+          <div class="c-top"><div class="c-lab">Organisation</div><div class="c-num">4<em>/5</em></div></div>
+          <div class="blocks"><i class="blk f"></i><i class="blk f"></i><i class="blk f"></i><i class="blk f"></i><i class="blk"></i></div>
+          <div class="c-note">Coherent. Variety of linking words and cohesive devices.</div>
+        </div>
+        <div class="cell">
+          <div class="c-top"><div class="c-lab">Language</div><div class="c-num">3<em>/5</em></div></div>
+          <div class="blocks"><i class="blk f"></i><i class="blk f"></i><i class="blk a"></i><i class="blk"></i><i class="blk"></i></div>
+          <div class="c-note">Errors present in complex forms but do not impede meaning.</div>
+        </div>
+      </div>
+      <div class="pen rise">
+        <h3>// Corrections</h3>
+        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem. They should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
+      </div>
+      <div class="foot rise">
+        <p>VERDICT: A strong B2 performance. Fix present-perfect control and lock the register to formal. Next stop — Band 4 on Language.</p>
+        <div class="bigband">B2<em>Estimated level</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== D3 · ATELIER ============================== -->
+  <section class="draft d3" data-name="Atelier · Organic studio">
+    <div class="wrap">
+      <div class="top rise"><span class="seed"></span> Writing studio · Part 1 essay</div>
+      <h1 class="rise">Your essay, gently graded.</h1>
+      <p class="sub rise">“Cars should be banned from city centres.” Marked across the four Cambridge scales — here's where it grows, and where to prune.</p>
+
+      <div class="card rise">
+        <div class="rowlab">The four scales</div>
+        <div class="srow">
+          <span class="diamond"></span>
+          <div class="s-meta">
+            <div class="s-name">Content <b>4<em> /5</em></b></div>
+            <div class="track"><div class="fill" style="width:80%"></div></div>
+          </div>
+        </div>
+        <div class="srow warn">
+          <span class="diamond"></span>
+          <div class="s-meta">
+            <div class="s-name">Communicative Achievement <b>3<em> /5</em></b></div>
+            <div class="track"><div class="fill warn" style="width:60%"></div></div>
+          </div>
+        </div>
+        <div class="srow">
+          <span class="diamond"></span>
+          <div class="s-meta">
+            <div class="s-name">Organisation <b>4<em> /5</em></b></div>
+            <div class="track"><div class="fill" style="width:80%"></div></div>
+          </div>
+        </div>
+        <div class="srow warn">
+          <span class="diamond"></span>
+          <div class="s-meta">
+            <div class="s-name">Language <b>3<em> /5</em></b></div>
+            <div class="track"><div class="fill warn" style="width:60%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pen rise">
+        <h3>Where the red pen landed</h3>
+        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem in the city centre, and they should be banned because they <del>make</del> <ins>cause</ins> a lot of pollution.</p>
+      </div>
+
+      <div class="tips rise">
+        <div class="tip"><span class="dot"></span>Keep one formal register from first line to last — no slipping into chat.</div>
+        <div class="tip"><span class="dot"></span>Rehearse the present perfect: “have become”, “has risen”, “have increased”.</div>
+        <div class="tip"><span class="dot"></span>Close with a sentence that ties pollution, transport and your idea together.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== D4 · TERMINAL 86 ============================== -->
+  <section class="draft d4" data-name="Terminal 86 · Retro-futurist">
+    <div class="wrap">
+      <div class="bar rise"><span>TRAMITENGLISH · WRITING.SYS</span><span class="amber">● MARKED</span></div>
+      <h1 class="rise">ESSAY_REPORT.LOG</h1>
+      <p class="prompt rise">&gt; TASK: <span class="c">“Cars should be banned from city centres.”</span> Do you agree?<br>&gt; FORMAT: Part 1 essay · 178/190 words · scale: Cambridge B2 First</p>
+
+      <div class="ledger rise">
+        <div class="lrow">
+          <div class="l-key">CONT</div>
+          <div class="l-name">Content</div>
+          <div class="asciibar">████<span class="o">█</span></div>
+          <div class="l-num">4</div>
+        </div>
+        <div class="lrow">
+          <div class="l-key">COMM</div>
+          <div class="l-name">Communicative Achievement</div>
+          <div class="asciibar">███<span class="o">██</span></div>
+          <div class="l-num">3</div>
+        </div>
+        <div class="lrow">
+          <div class="l-key">ORG</div>
+          <div class="l-name">Organisation</div>
+          <div class="asciibar">████<span class="o">█</span></div>
+          <div class="l-num">4</div>
+        </div>
+        <div class="lrow">
+          <div class="l-key">LANG</div>
+          <div class="l-name">Language</div>
+          <div class="asciibar">███<span class="o">██</span></div>
+          <div class="l-num">3</div>
+        </div>
+      </div>
+
+      <div class="pen rise">
+        <h3>&gt; PATCH SUGGESTIONS</h3>
+        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem. They should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
+      </div>
+
+      <div class="out rise">
+        <div class="band">B2<em>EST. LEVEL</em></div>
+        <p>&gt; A strong run. Recompile verb tenses and hold the formal register — Language jumps to band 4.<span class="cursor"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== D5 · DOSSIER ============================== -->
+  <section class="draft d5" data-name="Dossier · Dense report">
+    <div class="wrap">
+      <div class="head rise">
+        <div>
+          <div class="id">Assessment record · WR-01</div>
+          <h1>Writing Evaluation</h1>
+        </div>
+        <div class="ref">Cambridge B2 First · Scale v.2016</div>
+      </div>
+      <div class="meta-strip rise">
+        <div class="ms"><div class="k">Task</div><div class="v">Part 1 <em>Essay</em></div></div>
+        <div class="ms"><div class="k">Words</div><div class="v">178 <em>/190</em></div></div>
+        <div class="ms"><div class="k">Aggregate</div><div class="v">14 <em>/20</em></div></div>
+        <div class="ms"><div class="k">Level</div><div class="v">B2</div></div>
+      </div>
+
+      <div class="secthead rise">Subscale breakdown</div>
+      <table class="rise">
+        <tr>
+          <td class="idx">01</td>
+          <td class="nm">Content<div class="micro"><span class="hbar"><i style="width:80%"></i></span><span class="sc">4/5</span></div></td>
+          <td class="note">All content relevant; target reader fully informed. One minor omission in paragraph two.</td>
+        </tr>
+        <tr>
+          <td class="idx">02</td>
+          <td class="nm">Communicative Achievement<div class="micro"><span class="hbar"><i class="lo" style="width:60%"></i></span><span class="sc">3/5</span></div></td>
+          <td class="note">Conventions of the essay used to communicate straightforward ideas; register inconsistent.</td>
+        </tr>
+        <tr>
+          <td class="idx">03</td>
+          <td class="nm">Organisation<div class="micro"><span class="hbar"><i style="width:80%"></i></span><span class="sc">4/5</span></div></td>
+          <td class="note">Generally well organised and coherent; variety of linking words and cohesive devices.</td>
+        </tr>
+        <tr>
+          <td class="idx">04</td>
+          <td class="nm">Language<div class="micro"><span class="hbar"><i class="lo" style="width:60%"></i></span><span class="sc">3/5</span></div></td>
+          <td class="note">Range of everyday vocabulary; simple and some complex forms, errors do not impede.</td>
+        </tr>
+      </table>
+
+      <div class="secthead rise">Annotated corrections</div>
+      <div class="pen rise">
+        <h3>Extract · lines 1–2</h3>
+        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem in the city centre. In my opinion they should be banned because they <del>make a lot of pollution</del> <ins>cause a great deal of pollution</ins>.</p>
+      </div>
+
+      <div class="summary rise">
+        <div class="q">14<em>/20</em></div>
+        <p>Examiner note: a competent B2 script. Priority actions — stabilise the present perfect and maintain a formal register throughout to lift the Language subscale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== D6 · OVERPRINT ============================== -->
+  <section class="draft d6" data-name="Overprint · Risograph poster">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <div class="wrap">
+      <div class="ey rise"><span class="sq"></span> Writing · Part 1 · Essay · Marked</div>
+      <h1 class="rise">Ban the<br><span class="ink">Cars?</span></h1>
+      <p class="pr rise">“Cars should be banned from city centres.” Your essay, graded on the four Cambridge B2 First scales.</p>
+
+      <div class="scores rise">
+        <div class="sc"><span class="mk"></span><div class="n">4<em>/5</em></div><div class="lab">Content</div></div>
+        <div class="sc hot"><span class="mk"></span><div class="n">3<em>/5</em></div><div class="lab">Comm. Achievement</div></div>
+        <div class="sc"><span class="mk"></span><div class="n">4<em>/5</em></div><div class="lab">Organisation</div></div>
+        <div class="sc hot"><span class="mk"></span><div class="n">3<em>/5</em></div><div class="lab">Language</div></div>
+      </div>
+
+      <div class="pen rise">
+        <h3>Red pen</h3>
+        <p>Nowadays, cars <del>are became</del> <ins>have become</ins> a real problem, and they should be banned because they <del>make</del> <ins>cause</ins> a great deal of pollution.</p>
+      </div>
+
+      <div class="verdict rise">
+        <div class="big">B2</div>
+        <p>A persuasive, well-built essay. Steady the verb tenses and keep it formal end-to-end — Band 4 is one revision away.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="sw-hint">← → arrows · swipe · click dots</div>
+<nav class="switcher">
+  <button class="sw-btn" id="prev" aria-label="Previous">‹</button>
+  <div class="sw-name"><span id="idx">01</span>/06 · <b id="nm">Inkpress · Editorial</b></div>
+  <div class="sw-dots" id="dots"></div>
+  <button class="sw-btn" id="next" aria-label="Next">›</button>
+</nav>
+
+<script>
+(function(){
+  var drafts = Array.prototype.slice.call(document.querySelectorAll('.draft'));
+  var cur = 0;
+  var dotsWrap = document.getElementById('dots');
+  var idxEl = document.getElementById('idx');
+  var nmEl = document.getElementById('nm');
+
+  drafts.forEach(function(d,i){
+    var dot = document.createElement('span');
+    dot.className = 'sw-dot' + (i===0?' on':'');
+    dot.addEventListener('click', function(){ go(i); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function go(n){
+    n = (n + drafts.length) % drafts.length;
+    drafts[cur].classList.remove('active');
+    dots[cur].classList.remove('on');
+    cur = n;
+    drafts[cur].classList.add('active');
+    drafts[cur].scrollTop = 0;
+    dots[cur].classList.add('on');
+    idxEl.textContent = ('0'+(cur+1)).slice(-2);
+    nmEl.textContent = drafts[cur].getAttribute('data-name');
+  }
+
+  document.getElementById('prev').addEventListener('click', function(){ go(cur-1); });
+  document.getElementById('next').addEventListener('click', function(){ go(cur+1); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowLeft') go(cur-1);
+    if(e.key==='ArrowRight') go(cur+1);
+  });
+
+  // swipe
+  var x0=null;
+  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if(x0===null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 60){ go(dx<0 ? cur+1 : cur-1); }
+    x0=null;
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
